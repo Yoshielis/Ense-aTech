@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:background="@color/white">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/tvTituloLeccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Título de la Lección"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_500"
+                android:layout_marginBottom="8dp" />
+
+        <TextView
+                android:id="@+id/tvDescripcionLeccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripción de la lección..."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="16dp" />
+
+        <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/black" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Experimento Casero:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_700"
+                android:layout_marginBottom="8dp" />
+
+        <TextView
+                android:id="@+id/tvExperimento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripción del experimento..."
+                android:textSize="14sp"
+                android:padding="12dp"
+                android:background="@color/teal_200"
+                android:layout_marginBottom="16dp" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Referencias:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_700"
+                android:layout_marginBottom="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvReferencias"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="16dp" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+            <Button
+                    android:id="@+id/btnPreguntas"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Preguntas"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/purple_500" />
+
+            <Button
+                    android:id="@+id/btnCompletarLeccion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Completar Lección"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/teal_700" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

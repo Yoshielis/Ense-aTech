@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="16dp"
+              android:background="@color/white">
+
+    <TextView
+            android:id="@+id/tvTituloApuntes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mis Apuntes"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/purple_500"
+            android:layout_marginBottom="16dp" />
+
+    <Spinner
+            android:id="@+id/spinnerCursos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+    <EditText
+            android:id="@+id/etTituloNota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Título de la nota"
+            android:layout_marginBottom="8dp" />
+
+    <EditText
+            android:id="@+id/etContenidoNota"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="Contenido de la nota..."
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+        <Button
+                android:id="@+id/btnGuardarNota"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Guardar Nota"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/purple_500" />
+
+        <Button
+                android:id="@+id/btnLimpiar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Limpiar"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/teal_200" />
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notas Guardadas:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/purple_700"
+            android:layout_marginBottom="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNotas"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+</LinearLayout>

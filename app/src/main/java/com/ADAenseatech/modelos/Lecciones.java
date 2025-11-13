@@ -9,10 +9,11 @@ public class Lecciones {
     private String descripcion;
     private String urlVideo;
     private List<Referencia> referencias;
-    private List<Preguntas> preguntas;
+    private List<Preguntas> preguntas; // Cambiado a singular
     private String descripcionExperimento;
     private boolean completada;
     private double progreso;
+    private Curso curso;
 
     public Lecciones() {
         this.referencias = new ArrayList<>();
@@ -46,4 +47,7 @@ public class Lecciones {
 
     public double getProgreso() { return progreso; }
     public void setProgreso(double progreso) { this.progreso = progreso; }
+    public Curso getCurso() { return curso; }
+    public void setCurso(Curso curso) { this.curso = curso; }
+
 }

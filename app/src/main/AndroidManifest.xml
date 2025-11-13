@@ -6,8 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -15,15 +15,17 @@
             android:theme="@style/Theme.EnseñaTech"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
+        <!-- Activity Principal -->
         <activity
                 android:name=".LoginActivity"
-                android:exported="true"
-                tools:ignore="Instantiatable">
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- OTRAS ACTIVITIES -->
         <activity android:name=".HomeEstudiante" />
         <activity android:name=".HomeProfesor" />
         <activity android:name=".HomeTutor" />
@@ -32,5 +34,7 @@
         <activity android:name=".Leccion" />
         <activity android:name=".Apuntes" />
         <activity android:name=".Formularios" />
+        <activity android:name=".Nota" />
+
     </application>
 </manifest>

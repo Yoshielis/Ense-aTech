@@ -1,34 +1,29 @@
 package com.ADAenseatech;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.ADAenseatech.adaptcurso.Adaptcurso;
+import com.ADAenseatech.adaptcurso.AdaptCurso;
 import com.ADAenseatech.modelos.Curso;
 import com.ADAenseatech.modelos.Lecciones;
 import com.ADAenseatech.modelos.Preguntas;
 import com.ADAenseatech.modelos.Referencia;
+import com.ADAenseatech.utilidad.BaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeEstudiante extends AppCompatActivity {
+public class HomeEstudiante extends BaseActivity {
 
-    private Toolbar toolbar;
-    private TextView toolbarTitle;
-    private ImageButton btnBack;
     private TextView tvBienvenida;
     private RecyclerView rvCursos;
     private Button btnApuntes, btnFormularios;
-
-    private Adaptcurso adaptadorCursos;
+    private AdaptCurso adaptadorCursos;
     private List<Curso> listaCursos = new ArrayList<>();
 
     @Override
@@ -36,68 +31,21 @@ public class HomeEstudiante extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_estudiante);
 
-        // Configurar Toolbar personalizado
-        configurarToolbar();
+        // Configurar toolbar y regreso
+        configurarToolbarBasico("Inicio Estudiante");
+        configurarRegresoAlLogin(); // ← Esto hace todo automáticamente
 
-        // Inicializar vistas
         inicializarVistas();
-
-        // Configurar funcionalidad
         cargarDatosUsuario();
         configurarListaCursos();
         configurarBotones();
     }
 
-    private void configurarToolbar() {
-        try {
-            toolbar = findViewById(R.id.toolbar);
-            toolbarTitle = findViewById(R.id.toolbar_title);
-            btnBack = findViewById(R.id.btnBack);
-
-            // Verificar que las vistas se encontraron
-            if (toolbar == null) {
-                Toast.makeText(this, "Error: No se encontró el Toolbar", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            setSupportActionBar(toolbar);
-
-            // Configurar botón de regreso
-            if (btnBack != null) {
-                btnBack.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        onBackPressed();
-                    }
-                });
-            }
-
-            // Configurar título
-            if (toolbarTitle != null) {
-                toolbarTitle.setText("Inicio Estudiante");
-            }
-
-        } catch (Exception e) {
-            Toast.makeText(this, "Error configurando toolbar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void inicializarVistas() {
-        try {
-            tvBienvenida = findViewById(R.id.tvBienvenida);
-            rvCursos = findViewById(R.id.rvCursos);
-            btnApuntes = findViewById(R.id.btnApuntes);
-            btnFormularios = findViewById(R.id.btnFormularios);
-
-            // Verificar que todas las vistas se encontraron
-            if (tvBienvenida == null) Toast.makeText(this, "tvBienvenida no encontrado", Toast.LENGTH_SHORT).show();
-            if (rvCursos == null) Toast.makeText(this, "rvCursos no encontrado", Toast.LENGTH_SHORT).show();
-            if (btnApuntes == null) Toast.makeText(this, "btnApuntes no encontrado", Toast.LENGTH_SHORT).show();
-            if (btnFormularios == null) Toast.makeText(this, "btnFormularios no encontrado", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            Toast.makeText(this, "Error inicializando vistas: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        tvBienvenida = findViewById(R.id.tvBienvenida);
+        rvCursos = findViewById(R.id.rvCursos);
+        btnApuntes = findViewById(R.id.btnApuntes);
+        btnFormularios = findViewById(R.id.btnFormularios);
     }
 
     private void cargarDatosUsuario() {
@@ -159,17 +107,6 @@ public class HomeEstudiante extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        try {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        } catch (Exception e) {
-            // Si no existen las animaciones, simplemente ignora el error
-        }
-    }
-
-    // Tus métodos existentes...
     private List<Curso> generarCursosEjemplo() {
         List<Curso> cursos = new ArrayList<>();
 

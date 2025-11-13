@@ -10,7 +10,7 @@ import com.ADAenseatech.R;
 import com.ADAenseatech.modelos.Curso;
 import java.util.List;
 
-public class Adaptcurso extends RecyclerView.Adapter<Adaptcurso.CursoViewHolder> {
+public class AdaptCurso extends RecyclerView.Adapter<AdaptCurso.CursoViewHolder> {
 
     private List<Curso> listaCursos;
     private OnCursoClickListener listener;
@@ -19,7 +19,7 @@ public class Adaptcurso extends RecyclerView.Adapter<Adaptcurso.CursoViewHolder>
         void onCursoClick(Curso curso);
     }
 
-    public Adaptcurso(List<Curso> listaCursos, OnCursoClickListener listener) {
+    public AdaptCurso(List<Curso> listaCursos, OnCursoClickListener listener) {
         this.listaCursos = listaCursos;
         this.listener = listener;
     }
@@ -40,7 +40,7 @@ public class Adaptcurso extends RecyclerView.Adapter<Adaptcurso.CursoViewHolder>
 
     @Override
     public int getItemCount() {
-        return listaCursos.size();
+        return listaCursos != null ? listaCursos.size() : 0;
     }
 
     public void actualizarCursos(List<Curso> nuevosCursos) {
@@ -61,16 +61,20 @@ public class Adaptcurso extends RecyclerView.Adapter<Adaptcurso.CursoViewHolder>
         }
 
         public void bind(Curso curso, OnCursoClickListener listener) {
-            tvTituloCurso.setText(curso.getTitulo());
-            tvDescripcionCurso.setText(curso.getDescripcion());
-            tvProgreso.setText("Progreso: " + curso.getProgreso() + "%");
+            if (curso != null) {
+                tvTituloCurso.setText(curso.getTitulo() != null ? curso.getTitulo() : "");
+                tvDescripcionCurso.setText(curso.getDescripcion() != null ? curso.getDescripcion() : "");
+                tvProgreso.setText("Progreso: " + curso.getProgreso() + "%");
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onCursoClick(curso);
-                }
-            });
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (listener != null) {
+                            listener.onCursoClick(curso);
+                        }
+                    }
+                });
+            }
         }
     }
 }

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursos - ADA enTech</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/courses.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>ADA enTech</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="home-estudiante.html">Inicio</a></li>
+          <li><a href="cursos.html" class="active">Cursos</a></li>
+          <li><a href="formularios.html">Formularios</a></li>
+          <li><a href="apuntes.html">Apuntes</a></li>
+          <li><a href="perfil.html">Mi Perfil</a></li>
+          <li><a href="#" id="logoutBtn">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <h1>Catálogo de Cursos</h1>
+      <p>Explora todos los cursos disponibles y mejora tus habilidades</p>
+    </div>
+
+    <div class="filters-section">
+      <div class="filter-group">
+        <label for="categoriaFilter">Filtrar por categoría:</label>
+        <select id="categoriaFilter" class="form-control">
+          <option value="">Todas las categorías</option>
+          <option value="FISICA">Física</option>
+          <option value="CALCULO">Cálculo</option>
+          <option value="QUIMICA">Química</option>
+          <option value="MATEMATICAS">Matemáticas</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="nivelFilter">Filtrar por nivel:</label>
+        <select id="nivelFilter" class="form-control">
+          <option value="">Todos los niveles</option>
+          <option value="BASICO">Básico</option>
+          <option value="INTERMEDIO">Intermedio</option>
+          <option value="AVANZADO">Avanzado</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="courses-catalog">
+      <div class="course-category">
+        <h2><i class="fas fa-atom"></i> Física</h2>
+        <div class="courses-grid">
+          <div class="course-card large">
+            <div class="course-header">
+              <h3>Física Básica</h3>
+              <span class="level-badge basico">Básico</span>
+            </div>
+            <div class="course-instructor">
+              <i class="fas fa-user-tie"></i>
+              <span>Prof. María González</span>
+            </div>
+            <p>Aprende los fundamentos de la física con experimentos caseros y aplicaciones prácticas</p>
+            <div class="course-stats">
+              <span><i class="fas fa-play-circle"></i> 15 lecciones</span>
+              <span><i class="fas fa-clock"></i> 8 horas</span>
+              <span><i class="fas fa-users"></i> 245 estudiantes</span>
+            </div>
+            <div class="course-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span>4.5 (128 reviews)</span>
+            </div>
+            <div class="course-actions">
+              <a href="lecciones.html?curso=fisica-basica" class="btn btn-primary">Ver Curso</a>
+              <button class="btn btn-outline" onclick="descargarCurso('fisica-basica')">
+                <i class="fas fa-download"></i> Descargar
+              </button>
+            </div>
+          </div>
+
+          <div class="course-card large">
+            <div class="course-header">
+              <h3>Física Avanzada</h3>
+              <span class="level-badge avanzado">Avanzado</span>
+            </div>
+            <div class="course-instructor">
+              <i class="fas fa-user-tie"></i>
+              <span>Prof. Carlos Rodríguez</span>
+            </div>
+            <p>Conceptos avanzados de física moderna y aplicaciones en ingeniería</p>
+            <div class="course-stats">
+              <span><i class="fas fa-play-circle"></i> 20 lecciones</span>
+              <span><i class="fas fa-clock"></i> 12 horas</span>
+              <span><i class="fas fa-users"></i> 89 estudiantes</span>
+            </div>
+            <div class="course-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span>5.0 (45 reviews)</span>
+            </div>
+            <div class="course-actions">
+              <a href="lecciones.html?curso=fisica-avanzada" class="btn btn-primary">Ver Curso</a>
+              <button class="btn btn-outline" onclick="descargarCurso('fisica-avanzada')">
+                <i class="fas fa-download"></i> Descargar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-category">
+        <h2><i class="fas fa-calculator"></i> Cálculo</h2>
+        <div class="courses-grid">
+          <div class="course-card large">
+            <div class="course-header">
+              <h3>Cálculo Diferencial</h3>
+              <span class="level-badge basico">Básico</span>
+            </div>
+            <div class="course-instructor">
+              <i class="fas fa-user-tie"></i>
+              <span>Prof. Ana Martínez</span>
+            </div>
+            <p>Aprende derivadas y sus aplicaciones en problemas reales</p>
+            <div class="course-stats">
+              <span><i class="fas fa-play-circle"></i> 12 lecciones</span>
+              <span><i class="fas fa-clock"></i> 6 horas</span>
+              <span><i class="fas fa-users"></i> 312 estudiantes</span>
+            </div>
+            <div class="course-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span>4.8 (156 reviews)</span>
+            </div>
+            <div class="course-actions">
+              <a href="lecciones.html?curso=calculo-diferencial" class="btn btn-primary">Ver Curso</a>
+              <button class="btn btn-outline" onclick="descargarCurso('calculo-diferencial')">
+                <i class="fas fa-download"></i> Descargar
+              </button>
+            </div>
+          </div>
+
+          <div class="course-card large">
+            <div class="course-header">
+              <h3>Cálculo Integral</h3>
+              <span class="level-badge intermedio">Intermedio</span>
+            </div>
+            <div class="course-instructor">
+              <i class="fas fa-user-tie"></i>
+              <span>Prof. Luis Hernández</span>
+            </div>
+            <p>Integrales definidas e indefinidas con aplicaciones prácticas</p>
+            <div class="course-stats">
+              <span><i class="fas fa-play-circle"></i> 14 lecciones</span>
+              <span><i class="fas fa-clock"></i> 7 horas</span>
+              <span><i class="fas fa-users"></i> 198 estudiantes</span>
+            </div>
+            <div class="course-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span>4.3 (92 reviews)</span>
+            </div>
+            <div class="course-actions">
+              <a href="lecciones.html?curso=calculo-integral" class="btn btn-primary">Ver Curso</a>
+              <button class="btn btn-outline" onclick="descargarCurso('calculo-integral')">
+                <i class="fas fa-download"></i> Descargar
+              </button>
+            </div>
+          </div>
+
+          <div class="course-card large">
+            <div class="course-header">
+              <h3>Cálculo Multivariable</h3>
+              <span class="level-badge avanzado">Avanzado</span>
+            </div>
+            <div class="course-instructor">
+              <i class="fas fa-user-tie"></i>
+              <span>Prof. Roberto Silva</span>
+            </div>
+            <p>Funciones de varias variables y aplicaciones en ingeniería</p>
+            <div class="course-stats">
+              <span><i class="fas fa-play-circle"></i> 18 lecciones</span>
+              <span><i class="fas fa-clock"></i> 10 horas</span>
+              <span><i class="fas fa-users"></i> 76 estudiantes</span>
+            </div>
+            <div class="course-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span>4.9 (34 reviews)</span>
+            </div>
+            <div class="course-actions">
+              <a href="lecciones.html?curso=calculo-multivariable" class="btn btn-primary">Ver Curso</a>
+              <button class="btn btn-outline" onclick="descargarCurso('calculo-multivariable')">
+                <i class="fas fa-download"></i> Descargar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 ADA enTech - Plataforma Educativa. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/courses.js"></script>
+</body>
+</html>

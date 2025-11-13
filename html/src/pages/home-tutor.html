@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio Tutor - ADA enTech</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/courses.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>ADA enTech</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="home-tutor.html" class="active">Inicio Tutor</a></li>
+          <li><a href="cursos.html">Cursos Supervisados</a></li>
+          <li><a href="formularios.html">Evaluaciones</a></li>
+          <li><a href="apuntes.html">Recursos</a></li>
+          <li><a href="perfil.html">Mi Perfil</a></li>
+          <li><button class="btn btn-outline" onclick="cambiarModoEstudiante()">Modo Estudiante</button></li>
+          <li><a href="#" id="logoutBtn">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <h1 id="welcomeMessage">Panel del Tutor</h1>
+      <p>Supervisa el progreso de estudiantes y proporciona apoyo personalizado</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-user-friends"></i>
+        </div>
+        <div class="stat-info">
+          <h3>24</h3>
+          <p>Estudiantes Activos</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-chalkboard"></i>
+        </div>
+        <div class="stat-info">
+          <h3>5</h3>
+          <p>Cursos Supervisados</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-comments"></i>
+        </div>
+        <div class="stat-info">
+          <h3>8</h3>
+          <p>Solicitudes Pendientes</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="stat-info">
+          <h3>82%</h3>
+          <p>Progreso Promedio</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-content">
+      <div class="content-section">
+        <div class="section-header">
+          <h2>Cursos Supervisados</h2>
+          <button class="btn btn-primary" onclick="crearGrupoTutoria()">
+            <i class="fas fa-plus"></i> Nuevo Grupo
+          </button>
+        </div>
+
+        <div class="courses-grid">
+          <div class="course-card">
+            <div class="course-header">
+              <h3>Física Básica - Grupo A</h3>
+              <span class="status-badge active">Activo</span>
+            </div>
+            <div class="course-meta">
+              <span><i class="fas fa-users"></i> 8 estudiantes</span>
+              <span><i class="fas fa-calendar"></i> Desde: 15 Ago 2023</span>
+            </div>
+            <p>Supervisión de estudiantes en física básica con enfoque práctico</p>
+            <div class="student-progress">
+              <h4>Progreso del Grupo:</h4>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 75%"></div>
+              </div>
+              <span>75% promedio</span>
+            </div>
+            <div class="course-actions">
+              <button class="btn btn-primary" onclick="verDetallesGrupo('fisica-a')">Ver Grupo</button>
+              <button class="btn btn-outline" onclick="generarReporte('fisica-a')">Reporte</button>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-header">
+              <h3>Cálculo Diferencial - Grupo B</h3>
+              <span class="status-badge active">Activo</span>
+            </div>
+            <div class="course-meta">
+              <span><i class="fas fa-users"></i> 6 estudiantes</span>
+              <span><i class="fas fa-calendar"></i> Desde: 10 Sep 2023</span>
+            </div>
+            <p>Tutoría de cálculo para estudiantes con dificultades</p>
+            <div class="student-progress">
+              <h4>Progreso del Grupo:</h4>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 62%"></div>
+              </div>
+              <span>62% promedio</span>
+            </div>
+            <div class="course-actions">
+              <button class="btn btn-primary" onclick="verDetallesGrupo('calculo-b')">Ver Grupo</button>
+              <button class="btn btn-outline" onclick="generarReporte('calculo-b')">Reporte</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>Solicitudes de Ayuda</h2>
+        <div class="help-requests">
+          <div class="request-item urgent">
+            <div class="request-header">
+              <h4>Juan Pérez - Física</h4>
+              <span class="badge urgent">Urgente</span>
+            </div>
+            <p>Dificultades con conceptos de cinemática vectorial</p>
+            <div class="request-meta">
+              <span><i class="fas fa-clock"></i> Hace 2 horas</span>
+              <span><i class="fas fa-book"></i> Lección 5</span>
+            </div>
+            <div class="request-actions">
+              <button class="btn btn-primary">Atender</button>
+              <button class="btn btn-outline">Programar</button>
+            </div>
+          </div>
+
+          <div class="request-item">
+            <div class="request-header">
+              <h4>María García - Cálculo</h4>
+              <span class="badge normal">Normal</span>
+            </div>
+            <p>Dudas sobre aplicación de derivadas en problemas de optimización</p>
+            <div class="request-meta">
+              <span><i class="fas fa-clock"></i> Hace 5 horas</span>
+              <span><i class="fas fa-book"></i> Lección 8</span>
+            </div>
+            <div class="request-actions">
+              <button class="btn btn-primary">Atender</button>
+              <button class="btn btn-outline">Programar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 ADA enTech - Plataforma Educativa. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/tutor.js"></script>
+</body>
+</html>

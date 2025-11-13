@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - ADA enTech</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>Crear Cuenta</h2>
+            <p>Únete a la plataforma educativa ADA enTech</p>
+        </div>
+
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="fullName">Nombre Completo</label>
+                <input type="text" id="fullName" class="form-control" placeholder="Ingrese su nombre completo" required>
+                <div class="error-message" id="nameError">Por favor ingrese su nombre completo</div>
+            </div>
+
+            <div class="form-group">
+                <label for="regEmail">Correo Electrónico</label>
+                <input type="email" id="regEmail" class="form-control" placeholder="usuario@ejemplo.com" required>
+                <div class="error-message" id="regEmailError">Por favor ingrese un correo válido</div>
+            </div>
+
+            <div class="form-group">
+                <label for="regPassword">Contraseña</label>
+                <input type="password" id="regPassword" class="form-control" placeholder="Mínimo 6 caracteres" required>
+                <div class="error-message" id="regPasswordError">La contraseña debe tener al menos 6 caracteres</div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirmar Contraseña</label>
+                <input type="password" id="confirmPassword" class="form-control" placeholder="Repita su contraseña" required>
+                <div class="error-message" id="confirmPasswordError">Las contraseñas no coinciden</div>
+            </div>
+
+            <div class="form-group">
+                <label for="regUserType">Tipo de Usuario</label>
+                <select id="regUserType" class="form-control" required>
+                    <option value="">Seleccione un tipo</option>
+                    <option value="ESTUDIANTE">Estudiante</option>
+                    <option value="PROFESOR">Profesor</option>
+                    <option value="TUTOR">Tutor</option>
+                </select>
+                <div class="error-message" id="regUserTypeError">Por favor seleccione un tipo de usuario</div>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="acceptTerms" required>
+                    Acepto los <a href="#" class="link">términos y condiciones</a>
+                </label>
+                <div class="error-message" id="termsError">Debe aceptar los términos y condiciones</div>
+            </div>
+
+            <button type="submit" class="btn-auth">Crear Cuenta</button>
+        </form>
+
+        <div class="auth-footer">
+            <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+            <p><a href="../index.html">Volver al inicio</a></p>
+        </div>
+    </div>
+</div>
+
+<script src="../js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio Estudiante - ADA enTech</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>ADA enTech</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="home-estudiante.html" class="active">Inicio</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+          <li><a href="formularios.html">Formularios</a></li>
+          <li><a href="apuntes.html">Apuntes</a></li>
+          <li><a href="perfil.html">Mi Perfil</a></li>
+          <li><a href="#" id="logoutBtn">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <h1 id="welcomeMessage">Bienvenido, Estudiante</h1>
+      <p>Gestiona tu aprendizaje y sigue tu progreso</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <div class="stat-info">
+          <h3>5</h3>
+          <p>Cursos Activos</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="stat-info">
+          <h3>12</h3>
+          <p>Lecciones Completadas</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="stat-info">
+          <h3>68%</h3>
+          <p>Progreso General</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-award"></i>
+        </div>
+        <div class="stat-info">
+          <h3>350</h3>
+          <p>Puntos Obtenidos</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-content">
+      <div class="content-section">
+        <h2>Mis Cursos</h2>
+        <div class="courses-grid">
+          <div class="course-card">
+            <div class="course-header">
+              <h3>Física Básica</h3>
+              <span class="progress-badge">65%</span>
+            </div>
+            <p>Aprende los fundamentos de la física con experimentos caseros</p>
+            <div class="course-actions">
+              <a href="lecciones.html?curso=fisica" class="btn btn-primary">Continuar</a>
+              <a href="cursos.html?curso=fisica" class="btn btn-outline">Detalles</a>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-header">
+              <h3>Cálculo Diferencial</h3>
+              <span class="progress-badge">42%</span>
+            </div>
+            <p>Aprende derivadas y sus aplicaciones en problemas reales</p>
+            <div class="course-actions">
+              <a href="lecciones.html?curso=calculo" class="btn btn-primary">Continuar</a>
+              <a href="cursos.html?curso=calculo" class="btn btn-outline">Detalles</a>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-header">
+              <h3>Química General</h3>
+              <span class="progress-badge">30%</span>
+            </div>
+            <p>Conceptos fundamentales de química y reacciones químicas</p>
+            <div class="course-actions">
+              <a href="lecciones.html?curso=quimica" class="btn btn-primary">Continuar</a>
+              <a href="cursos.html?curso=quimica" class="btn btn-outline">Detalles</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>Próximas Actividades</h2>
+        <div class="activities-list">
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-clipboard-check"></i>
+            </div>
+            <div class="activity-info">
+              <h4>Evaluación de Física</h4>
+              <p>Próxima evaluación sobre movimiento rectilíneo</p>
+              <span class="activity-date">15 Nov 2023</span>
+            </div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-vial"></i>
+            </div>
+            <div class="activity-info">
+              <h4>Experimento de Química</h4>
+              <p>Preparar informe sobre reacciones químicas</p>
+              <span class="activity-date">18 Nov 2023</span>
+            </div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="activity-info">
+              <h4>Lectura de Cálculo</h4>
+              <p>Leer capítulo 4 sobre aplicaciones de derivadas</p>
+              <span class="activity-date">20 Nov 2023</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 ADA enTech - Plataforma Educativa. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formularios y Evaluaciones - ADA enTech</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>ADA enTech</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="home-estudiante.html">Inicio</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+          <li><a href="lecciones.html">Lecciones</a></li>
+          <li><a href="formularios.html" class="active">Formularios</a></li>
+          <li><a href="apuntes.html">Apuntes</a></li>
+          <li><a href="perfil.html">Mi Perfil</a></li>
+          <li><a href="#" id="logoutBtn">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <h1>Formularios y Evaluaciones</h1>
+      <p>Completa formularios, realiza evaluaciones y lleva un registro de tu progreso</p>
+    </div>
+
+    <div class="forms-tabs">
+      <button class="tab-btn active" onclick="abrirTab('formularios')">Formularios</button>
+      <button class="tab-btn" onclick="abrirTab('evaluaciones')">Evaluaciones</button>
+      <button class="tab-btn" onclick="abrirTab('resultados')">Resultados</button>
+    </div>
+
+    <!-- Sección de Formularios -->
+    <div id="formularios" class="tab-content active">
+      <div class="section-header">
+        <h2>Formularios Disponibles</h2>
+        <div class="form-filters">
+          <select id="filtroEstadoForm" class="form-control">
+            <option value="">Todos los estados</option>
+            <option value="PENDIENTE">Pendientes</option>
+            <option value="COMPLETADO">Completados</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="forms-grid">
+        <div class="form-card">
+          <div class="form-header">
+            <h3>Encuesta de Satisfacción - Física Básica</h3>
+            <span class="form-status pending">Pendiente</span>
+          </div>
+          <div class="form-meta">
+            <span><i class="fas fa-calendar"></i> Creado: 05 Nov 2023</span>
+            <span><i class="fas fa-clock"></i> Tiempo estimado: 10 min</span>
+          </div>
+          <p>Ayúdanos a mejorar el curso de Física Básica compartiendo tu experiencia</p>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="iniciarFormulario('encuesta_fisica')">Comenzar</button>
+            <button class="btn btn-outline" onclick="verDetallesFormulario('encuesta_fisica')">Detalles</button>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-header">
+            <h3>Solicitud de Tutoría Personalizada</h3>
+            <span class="form-status completed">Completado</span>
+          </div>
+          <div class="form-meta">
+            <span><i class="fas fa-calendar"></i> Completado: 02 Nov 2023</span>
+            <span><i class="fas fa-clock"></i> Tiempo: 8 min</span>
+          </div>
+          <p>Solicita sesiones de tutoría personalizada para temas específicos</p>
+          <div class="form-actions">
+            <button class="btn btn-outline" onclick="verResultadosFormulario('tutoria_personalizada')">Ver Respuestas</button>
+            <button class="btn btn-outline" onclick="descargarFormulario('tutoria_personalizada')">Descargar</button>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-header">
+            <h3>Reporte de Problemas Técnicos</h3>
+            <span class="form-status pending">Pendiente</span>
+          </div>
+          <div class="form-meta">
+            <span><i class="fas fa-calendar"></i> Creado: 01 Nov 2023</span>
+            <span><i class="fas fa-clock"></i> Tiempo estimado: 5 min</span>
+          </div>
+          <p>Reporta cualquier problema técnico que hayas experimentado en la plataforma</p>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="iniciarFormulario('reporte_tecnicos')">Comenzar</button>
+            <button class="btn btn-outline" onclick="verDetallesFormulario('reporte_tecnicos')">Detalles</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Evaluaciones -->
+    <div id="evaluaciones" class="tab-content">
+      <div class="section-header">
+        <h2>Evaluaciones Académicas</h2>
+        <div class="form-filters">
+          <select id="filtroCursoEval" class="form-control">
+            <option value="">Todos los cursos</option>
+            <option value="FISICA">Física</option>
+            <option value="CALCULO">Cálculo</option>
+            <option value="QUIMICA">Química</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="evaluations-grid">
+        <div class="evaluation-card">
+          <div class="eval-header">
+            <h3>Examen Parcial - Física Básica</h3>
+            <span class="eval-status available">Disponible</span>
+          </div>
+          <div class="eval-meta">
+            <span><i class="fas fa-book"></i> Unidades 1-4</span>
+            <span><i class="fas fa-clock"></i> 90 minutos</span>
+            <span><i class="fas fa-question-circle"></i> 25 preguntas</span>
+          </div>
+          <div class="eval-dates">
+            <p><strong>Disponible hasta:</strong> 20 Nov 2023, 23:59</p>
+            <p><strong>Intentos permitidos:</strong> 2</p>
+          </div>
+          <div class="eval-actions">
+            <button class="btn btn-primary" onclick="iniciarEvaluacion('examen_fisica')">Comenzar Evaluación</button>
+            <button class="btn btn-outline" onclick="verInstrucciones('examen_fisica')">Instrucciones</button>
+          </div>
+        </div>
+
+        <div class="evaluation-card">
+          <div class="eval-header">
+            <h3>Quiz - Cálculo Diferencial</h3>
+            <span class="eval-status completed">Completado</span>
+          </div>
+          <div class="eval-meta">
+            <span><i class="fas fa-book"></i> Derivadas</span>
+            <span><i class="fas fa-clock"></i> 30 minutos</span>
+            <span><i class="fas fa-question-circle"></i> 15 preguntas</span>
+          </div>
+          <div class="eval-result">
+            <p><strong>Calificación:</strong> 18/20 (90%)</p>
+            <p><strong>Fecha de realización:</strong> 05 Nov 2023</p>
+          </div>
+          <div class="eval-actions">
+            <button class="btn btn-outline" onclick="verResultadosEvaluacion('quiz_calculo')">Ver Resultados</button>
+            <button class="btn btn-outline" onclick="revisarEvaluacion('quiz_calculo')">Revisar</button>
+          </div>
+        </div>
+
+        <div class="evaluation-card">
+          <div class="eval-header">
+            <h3>Tarea - Aplicaciones de Integrales</h3>
+            <span class="eval-status upcoming">Próximamente</span>
+          </div>
+          <div class="eval-meta">
+            <span><i class="fas fa-book"></i> Integrales definidas</span>
+            <span><i class="fas fa-clock"></i> 7 días</span>
+            <span><i class="fas fa-file-alt"></i> Entrega de archivo</span>
+          </div>
+          <div class="eval-dates">
+            <p><strong>Disponible desde:</strong> 15 Nov 2023</p>
+            <p><strong>Fecha límite:</strong> 22 Nov 2023</p>
+          </div>
+          <div class="eval-actions">
+            <button class="btn btn-outline" disabled>No disponible</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Resultados -->
+    <div id="resultados" class="tab-content">
+      <div class="section-header">
+        <h2>Historial de Resultados</h2>
+        <button class="btn btn-outline" onclick="generarReporteCompleto()">
+          <i class="fas fa-download"></i> Descargar Reporte
+        </button>
+      </div>
+
+      <div class="results-summary">
+        <div class="summary-card">
+          <h3>Rendimiento General</h3>
+          <div class="gauge-container">
+            <div class="gauge" id="gaugeRendimiento">
+              <div class="gauge-fill" style="transform: rotate(0.72turn);"></div>
+              <div class="gauge-value">72%</div>
+            </div>
+          </div>
+          <p>Promedio de todas las evaluaciones</p>
+        </div>
+
+        <div class="stats-cards">
+          <div class="stat-card small">
+            <div class="stat-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-info">
+              <h3>8</h3>
+              <p>Completadas</p>
+            </div>
+          </div>
+          <div class="stat-card small">
+            <div class="stat-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-info">
+              <h3>3</h3>
+              <p>Pendientes</p>
+            </div>
+          </div>
+          <div class="stat-card small">
+            <div class="stat-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="stat-info">
+              <h3>5</h3>
+              <p>Mejorías</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="results-table">
+        <h3>Detalle de Evaluaciones</h3>
+        <table class="data-table">
+          <thead>
+          <tr>
+            <th>Evaluación</th>
+            <th>Curso</th>
+            <th>Fecha</th>
+            <th>Calificación</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Quiz - Cálculo Diferencial</td>
+            <td>Cálculo</td>
+            <td>05 Nov 2023</td>
+            <td>18/20 (90%)</td>
+            <td><span class="status-badge completed">Completado</span></td>
+            <td>
+              <button class="btn btn-sm btn-outline" onclick="verDetallesResultado(1)">Detalles</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Examen Parcial - Física</td>
+            <td>Física</td>
+            <td>28 Oct 2023</td>
+            <td>42/50 (84%)</td>
+            <td><span class="status-badge completed">Completado</span></td>
+            <td>
+              <button class="btn btn-sm btn-outline" onclick="verDetallesResultado(2)">Detalles</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Tarea - Álgebra Lineal</td>
+            <td>Matemáticas</td>
+            <td>20 Oct 2023</td>
+            <td>15/20 (75%)</td>
+            <td><span class="status-badge completed">Completado</span></td>
+            <td>
+              <button class="btn btn-sm btn-outline" onclick="verDetallesResultado(3)">Detalles</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 ADA enTech - Plataforma Educativa. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/forms.js"></script>
+</body>
+</html>

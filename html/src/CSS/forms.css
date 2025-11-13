@@ -1,0 +1,458 @@
+/* Estilos para formularios y evaluaciones */
+.forms-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    padding: 1rem 2rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--text-color);
+}
+
+.tab-btn:hover {
+    background-color: rgba(67, 97, 238, 0.05);
+    color: var(--primary);
+}
+
+.tab-btn.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.form-filters {
+    display: flex;
+    gap: 1rem;
+}
+
+.forms-grid,
+.evaluations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.form-card,
+.evaluation-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+}
+
+.form-card:hover,
+.evaluation-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-header,
+.eval-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.form-header h3,
+.eval-header h3 {
+    color: var(--primary);
+    margin-right: 1rem;
+}
+
+.form-status,
+.eval-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.form-status.pending,
+.eval-status.available {
+    background-color: rgba(248, 150, 30, 0.1);
+    color: var(--warning);
+}
+
+.form-status.completed,
+.eval-status.completed {
+    background-color: rgba(76, 201, 240, 0.1);
+    color: var(--success);
+}
+
+.eval-status.upcoming {
+    background-color: rgba(158, 158, 158, 0.1);
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.form-meta,
+.eval-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+.form-meta span,
+.eval-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.eval-dates,
+.eval-result {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: rgba(67, 97, 238, 0.05);
+    border-radius: 4px;
+}
+
+.eval-dates p,
+.eval-result p {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.form-actions,
+.eval-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Resultados Section */
+.results-summary {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gauge-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1rem;
+}
+
+.gauge {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(
+            var(--success) 0% 72%,
+            var(--border-color) 72% 100%
+    );
+    position: relative;
+}
+
+.gauge::before {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background: var(--card-bg);
+    border-radius: 50%;
+    top: 10%;
+    left: 10%;
+}
+
+.gauge-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stat-card.small {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.stat-card.small .stat-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card.small .stat-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.stat-card.small .stat-info p {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+.results-table {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal de formulario */
+.form-modal {
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.form-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.form-progress::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.progress-step.active .step-number {
+    background-color: var(--primary);
+    color: white;
+}
+
+.progress-step.completed .step-number {
+    background-color: var(--success);
+    color: white;
+}
+
+.step-label {
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.question-group {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.question-group h4 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.rating-scale {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.rating-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.rating-option input {
+    display: none;
+}
+
+.rating-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s;
+}
+
+.rating-option input:checked + .rating-circle {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.rating-option:hover .rating-circle {
+    border-color: var(--primary);
+}
+
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Evaluación en tiempo real */
+.evaluation-timer {
+    position: sticky;
+    top: 0;
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    z-index: 100;
+    margin: -2rem -2rem 2rem -2rem;
+}
+
+.timer-warning {
+    background-color: var(--warning);
+}
+
+.timer-danger {
+    background-color: var(--danger);
+}
+
+.question-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.question-nav-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.question-nav-btn.answered {
+    background-color: var(--success);
+    color: white;
+    border-color: var(--success);
+}
+
+.question-nav-btn.current {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.question-nav-btn:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .forms-tabs {
+        flex-direction: column;
+    }
+
+    .tab-btn {
+        padding: 0.75rem 1rem;
+        text-align: left;
+    }
+
+    .forms-grid,
+    .evaluations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .results-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .form-header,
+    .eval-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .rating-scale {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .form-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form-navigation .btn {
+        width: 100%;
+    }
+}

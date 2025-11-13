@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio Profesor - ADA enTech</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/courses.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>ADA enTech</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home-profesor.html" class="active">Inicio</a></li>
+                    <li><a href="cursos.html">Mis Cursos</a></li>
+                    <li><a href="formularios.html">Evaluaciones</a></li>
+                    <li><a href="apuntes.html">Recursos</a></li>
+                    <li><a href="perfil.html">Mi Perfil</a></li>
+                    <li><a href="#" id="logoutBtn">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="dashboard">
+    <div class="container">
+        <div class="dashboard-header">
+            <h1 id="welcomeMessage">Panel del Profesor</h1>
+            <p>Gestiona tus cursos y evalúa el progreso de los estudiantes</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chalkboard"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>3</h3>
+                    <p>Cursos Activos</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>85</h3>
+                    <p>Estudiantes</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>24</h3>
+                    <p>Evaluaciones Pendientes</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>76%</h3>
+                    <p>Promedio de Aprobación</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2>Mis Cursos Activos</h2>
+                    <button class="btn btn-primary" onclick="crearNuevoCurso()">
+                        <i class="fas fa-plus"></i> Nuevo Curso
+                    </button>
+                </div>
+
+                <div class="courses-grid">
+                    <div class="course-card">
+                        <div class="course-header">
+                            <h3>Física Avanzada</h3>
+                            <span class="status-badge active">Activo</span>
+                        </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-users"></i> 32 estudiantes</span>
+                            <span><i class="fas fa-calendar"></i> Inició: 15 Ago 2023</span>
+                        </div>
+                        <p>Curso de física para estudiantes de ingeniería con enfoque en aplicaciones prácticas</p>
+                        <div class="course-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                            <span>65% completado</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="cursos.html?curso=fisica-avanzada" class="btn btn-primary">Gestionar</a>
+                            <a href="#" class="btn btn-outline">Estadísticas</a>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="course-header">
+                            <h3>Cálculo Multivariable</h3>
+                            <span class="status-badge active">Activo</span>
+                        </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-users"></i> 28 estudiantes</span>
+                            <span><i class="fas fa-calendar"></i> Inició: 10 Sep 2023</span>
+                        </div>
+                        <p>Análisis de funciones de varias variables y aplicaciones en ingeniería</p>
+                        <div class="course-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 42%"></div>
+                            </div>
+                            <span>42% completado</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="cursos.html?curso=calculo-multivariable" class="btn btn-primary">Gestionar</a>
+                            <a href="#" class="btn btn-outline">Estadísticas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Evaluaciones Pendientes</h2>
+                <div class="evaluations-list">
+                    <div class="evaluation-item">
+                        <div class="evaluation-info">
+                            <h4>Examen Parcial - Física</h4>
+                            <p>32 evaluaciones por revisar</p>
+                            <span class="due-date">Vence: 20 Nov 2023</span>
+                        </div>
+                        <button class="btn btn-primary">Revisar</button>
+                    </div>
+
+                    <div class="evaluation-item">
+                        <div class="evaluation-info">
+                            <h4>Tarea 3 - Cálculo</h4>
+                            <p>15 trabajos pendientes</p>
+                            <span class="due-date">Vence: 18 Nov 2023</span>
+                        </div>
+                        <button class="btn btn-primary">Revisar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2023 ADA enTech - Plataforma Educativa. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/profesor.js"></script>
+</body>
+</html>

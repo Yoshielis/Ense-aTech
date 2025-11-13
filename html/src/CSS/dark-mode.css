@@ -1,0 +1,30 @@
+/* Modo oscuro específico */
+.dark-mode .course-card,
+.dark-mode .stat-card,
+.dark-mode .content-section,
+.dark-mode .activity-item {
+    background-color: var(--card-dark);
+    border-color: var(--border-dark);
+}
+
+.dark-mode .auth-card {
+    background-color: var(--card-dark);
+}
+
+.dark-mode .form-control {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border-color: var(--border-dark);
+}
+
+.dark-mode .hero {
+    background: linear-gradient(135deg, #2a3cb1 0%, #2c2a8a 100%);
+}
+
+.dark-mode .feature-card {
+    background-color: var(--card-dark);
+}
+
+.dark-mode .about {
+    background-color: var(--card-dark);
+}

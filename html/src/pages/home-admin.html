@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administración - ADA enTech</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>ADA enTech</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="home-admin.html" class="active">Dashboard</a></li>
+          <li><a href="#" onclick="mostrarSeccion('usuarios')">Usuarios</a></li>
+          <li><a href="#" onclick="mostrarSeccion('cursos')">Cursos</a></li>
+          <li><a href="#" onclick="mostrarSeccion('reportes')">Reportes</a></li>
+          <li><a href="#" onclick="mostrarSeccion('configuracion')">Configuración</a></li>
+          <li><a href="#" id="logoutBtn">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <h1 id="welcomeMessage">Panel de Administración</h1>
+      <p>Gestiona usuarios, cursos y supervisa el sistema educativo</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+          <h3>1,248</h3>
+          <p>Usuarios Totales</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+        <div class="stat-info">
+          <h3>45</h3>
+          <p>Profesores</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <div class="stat-info">
+          <h3>28</h3>
+          <p>Cursos Activos</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="stat-info">
+          <h3>94%</h3>
+          <p>Uso del Sistema</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Dashboard Principal -->
+    <div id="seccion-dashboard" class="admin-section active">
+      <div class="dashboard-content">
+        <div class="content-section">
+          <h2>Actividad Reciente</h2>
+          <div class="activity-feed">
+            <div class="activity-item">
+              <div class="activity-icon success">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <div class="activity-content">
+                <p><strong>Nuevo usuario registrado:</strong> Carlos Mendoza como Estudiante</p>
+                <span class="activity-time">Hace 15 minutos</span>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon primary">
+                <i class="fas fa-book"></i>
+              </div>
+              <div class="activity-content">
+                <p><strong>Nuevo curso creado:</strong> "Programación en Python" por Prof. Ana López</p>
+                <span class="activity-time">Hace 2 horas</span>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon warning">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <div class="activity-content">
+                <p><strong>Reporte de problema:</strong> Error en lección de Cálculo Integral</p>
+                <span class="activity-time">Hace 4 horas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <h2>Métricas del Sistema</h2>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <h3>Rendimiento General</h3>
+              <div class="metric-value">78%</div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 78%"></div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <h3>Tasa de Finalización</h3>
+              <div class="metric-value">65%</div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 65%"></div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <h3>Satisfacción Usuarios</h3>
+              <div class="metric-value">4.2/5</div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Gestión de Usuarios -->
+    <div id="seccion-usuarios" class="admin-section">
+      <div class="section-header">
+        <h2>Gestión de Usuarios</h2>
+        <button class="btn btn-primary" onclick="abrirModalNuevoUsuario()">
+          <i class="fas fa-user-plus"></i> Nuevo Usuario
+        </button>
+      </div>
+
+      <div class="filters-bar">
+        <div class="filter-group">
+          <input type="text" id="buscarUsuario" class="form-control" placeholder="Buscar usuario...">
+        </div>
+        <div class="filter-group">
+          <select id="filtroTipoUsuario" class="form-control">
+            <option value="">Todos los tipos</option>
+            <option value="ESTUDIANTE">Estudiantes</option>
+            <option value="PROFESOR">Profesores</option>
+            <option value="TUTOR">Tutores</option>
+            <option value="ADMIN">Administradores</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <select id="filtroEstado" class="form-control">
+            <option value="">Todos los estados</option>
+            <option value="ACTIVO">Activos</option>
+            <option value="INACTIVO">Inactivos</option>
+            <option value="BLOQUEADO">Bloqueados</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Último Acceso</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody id="tablaUsuarios">
+          <!-- Los usuarios se cargarán dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Otras secciones (Cursos, Reportes, Configuración) -->
+    <div id="seccion-cursos" class="admin-section">
+      <div class="section-header">
+        <h2>Gestión de Cursos</h2>
+        <button class="btn btn-primary">
+          <i class="fas fa-plus"></i> Nuevo Curso
+        </button>
+      </div>
+      <p>Funcionalidad de gestión de cursos en desarrollo...</p>
+    </div>
+
+    <div id="seccion-reportes" class="admin-section">
+      <h2>Reportes y Análisis</h2>
+      <p>Funcionalidad de reportes en desarrollo...</p>
+    </div>
+
+    <div id="seccion-configuracion" class="admin-section">
+      <h2>Configuración del Sistema</h2>
+      <p>Funcionalidad de configuración en desarrollo...</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 ADA enTech - Plataforma Educativa. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

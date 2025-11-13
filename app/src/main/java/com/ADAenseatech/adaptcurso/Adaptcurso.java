@@ -10,7 +10,7 @@ import com.ADAenseatech.R;
 import com.ADAenseatech.modelos.Curso;
 import java.util.List;
 
-public class AdaptCurso extends RecyclerView.Adapter<AdaptCurso.CursoViewHolder> {
+public class Adaptcurso extends RecyclerView.Adapter<Adaptcurso.CursoViewHolder> {
 
     private List<Curso> listaCursos;
     private OnCursoClickListener listener;
@@ -19,7 +19,7 @@ public class AdaptCurso extends RecyclerView.Adapter<AdaptCurso.CursoViewHolder>
         void onCursoClick(Curso curso);
     }
 
-    public AdaptCurso(List<Curso> listaCursos, OnCursoClickListener listener) {
+    public Adaptcurso(List<Curso> listaCursos, OnCursoClickListener listener) {
         this.listaCursos = listaCursos;
         this.listener = listener;
     }

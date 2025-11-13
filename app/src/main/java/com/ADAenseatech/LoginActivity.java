@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+// IMPORTACIÓN CORREGIDA - asegúrate de que la ruta del paquete sea correcta
 import com.ADAenseatech.modelos.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
@@ -26,6 +28,9 @@ public class LoginActivity extends AppCompatActivity {
         inicializarVistas();
         configurarSpinnerTipoUsuario();
         configurarBotonLogin();
+
+        // Opcional: Verificar si ya hay una sesión activa
+        verificarSesionActiva();
     }
 
     private void inicializarVistas() {
@@ -47,8 +52,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
+                String email = etEmail.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
                 String tipoUsuario = spinnerTipoUsuario.getSelectedItem().toString();
 
                 if (validarEntrada(email, password)) {
@@ -64,8 +69,13 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
 
-        if (!email.contains("@") || !email.contains(".")) {
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             mostrarMensaje("Por favor ingrese un email válido");
+            return false;
+        }
+
+        if (password.length() < 4) {
+            mostrarMensaje("La contraseña debe tener al menos 4 caracteres");
             return false;
         }
 
@@ -73,11 +83,37 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void realizarLogin(String email, String password, String tipoUsuario) {
-        // Simulación de login
-        Usuario usuario = new Usuario("1", "Usuario Ejemplo", email, tipoUsuario);
+        // Simulación de login - en una app real aquí harías la autenticación
+        // Generar un ID único para el usuario
+        String usuarioId = generarUsuarioId(email, tipoUsuario);
+        String nombre = obtenerNombreDesdeEmail(email);
 
+        // Crear instancia de Usuario
+        Usuario usuario = new Usuario(usuarioId, nombre, email, tipoUsuario);
+
+        // Guardar sesión y redirigir
         guardarSesionUsuario(usuario);
         redirigirAHome(tipoUsuario);
+
+        mostrarMensaje("Bienvenido " + nombre);
+    }
+
+    private String generarUsuarioId(String email, String tipoUsuario) {
+        // Generar un ID simple basado en email y tipo
+        return tipoUsuario.toLowerCase() + "_" + email.hashCode();
+    }
+
+    private String obtenerNombreDesdeEmail(String email) {
+        // Extraer la parte antes del @ como nombre
+        String nombre = email.split("@")[0];
+        return capitalizarPrimeraLetra(nombre);
+    }
+
+    private String capitalizarPrimeraLetra(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return texto;
+        }
+        return texto.substring(0, 1).toUpperCase() + texto.substring(1);
     }
 
     private void guardarSesionUsuario(Usuario usuario) {
@@ -87,7 +123,18 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("usuarioNombre", usuario.getNombre());
         editor.putString("usuarioEmail", usuario.getEmail());
         editor.putString("usuarioTipo", usuario.getTipoUsuario());
+        editor.putBoolean("sesionActiva", true);
         editor.apply();
+    }
+
+    private void verificarSesionActiva() {
+        SharedPreferences prefs = getSharedPreferences("SesionUsuario", MODE_PRIVATE);
+        boolean sesionActiva = prefs.getBoolean("sesionActiva", false);
+
+        if (sesionActiva) {
+            String tipoUsuario = prefs.getString("usuarioTipo", "ESTUDIANTE");
+            redirigirAHome(tipoUsuario);
+        }
     }
 
     private void redirigirAHome(String tipoUsuario) {

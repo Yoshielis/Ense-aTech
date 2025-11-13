@@ -9,10 +9,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.ADAenseatech.adaptcurso.AdaptCurso;
+import com.ADAenseatech.adaptcurso.Adaptcurso; // ← Tu paquete real
 import com.ADAenseatech.modelos.Curso;
-import com.ADAenseatech.modelos.Lecciones;
-import com.ADAenseatech.modelos.Preguntas;
+import com.ADAenseatech.modelos.Lecciones; // ← Tu clase real en plural
+import com.ADAenseatech.modelos.Preguntas; // ← Tu clase real en plural
 import com.ADAenseatech.modelos.Referencia;
 import com.ADAenseatech.utilidad.BaseActivity;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class HomeEstudiante extends BaseActivity {
     private TextView tvBienvenida;
     private RecyclerView rvCursos;
     private Button btnApuntes, btnFormularios;
-    private AdaptCurso adaptadorCursos;
+    private Adaptcurso adaptadorCursos; // ← Tu adaptador real
     private List<Curso> listaCursos = new ArrayList<>();
 
     @Override
@@ -31,9 +31,8 @@ public class HomeEstudiante extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_estudiante);
 
-        // Configurar toolbar y regreso
         configurarToolbarBasico("Inicio Estudiante");
-        configurarRegresoAlLogin(); // ← Esto hace todo automáticamente
+        configurarRegresoAlLogin();
 
         inicializarVistas();
         cargarDatosUsuario();
@@ -65,7 +64,7 @@ public class HomeEstudiante extends BaseActivity {
             listaCursos.clear();
             listaCursos.addAll(generarCursosEjemplo());
 
-            adaptadorCursos = new Adaptcurso(listaCursos, new Adaptcurso.OnCursoClickListener() {
+            adaptadorCursos = new Adaptcurso(listaCursos, new AdaptCurso.OnCursoClickListener() {
                 @Override
                 public void onCursoClick(Curso curso) {
                     onCursoSeleccionado(curso);
@@ -77,7 +76,7 @@ public class HomeEstudiante extends BaseActivity {
                 rvCursos.setAdapter(adaptadorCursos);
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Error configurando lista cursos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error configurando lista cursos: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -114,28 +113,38 @@ public class HomeEstudiante extends BaseActivity {
         Curso cursoFisica = new Curso("C1", "Física Básica",
                 "Aprende los fundamentos de la física con experimentos caseros", "Física", "P1");
 
-        Lecciones leccionFisica = new Lecciones();
+        Lecciones leccionFisica = new Lecciones(); // ← Tu clase real
         leccionFisica.setId("L1");
         leccionFisica.setTitulo("Introducción a la Física");
         leccionFisica.setDescripcion("Conceptos básicos y método científico");
         leccionFisica.setDescripcionExperimento("Experimento: Medición de densidad con objetos caseros");
 
         List<Referencia> referencias = new ArrayList<>();
-        referencias.add(new Referencia("Libro de Física General", "http://ejemplo.com", "PDF"));
+        Referencia ref1 = new Referencia();
+        ref1.setTitulo("Libro de Física General");
+        ref1.setUrl("http://ejemplo.com");
+        ref1.setTipo("PDF");
+        referencias.add(ref1);
         leccionFisica.setReferencias(referencias);
 
-        List<Preguntas> preguntas = new ArrayList<>();
+        List<Preguntas> preguntas = new ArrayList<>(); // ← Tu clase real
         List<String> opciones = new ArrayList<>();
         opciones.add("Ciencia que estudia la materia");
         opciones.add("Ciencia que estudia la energía");
         opciones.add("Ciencia que estudia las propiedades de la materia y energía");
         opciones.add("Ciencia que estudia los números");
 
-        preguntas.add(new Preguntas("Q1", "¿Qué es la física?", opciones, 2,
-                "La física estudia las propiedades de la materia y la energía"));
+        Preguntas pregunta1 = new Preguntas(); // ← Tu clase real
+        pregunta1.setId("Q1");
+        pregunta1.setEnunciado("¿Qué es la física?");
+        pregunta1.setOpciones(opciones);
+        pregunta1.setRespuestaCorrecta("2"); // Índice de la respuesta correcta
+        pregunta1.setExplicacion("La física estudia las propiedades de la materia y la energía");
+        preguntas.add(pregunta1);
+
         leccionFisica.setPreguntas(preguntas);
 
-        List<Lecciones> lecciones = new ArrayList<>();
+        List<Lecciones> lecciones = new ArrayList<>(); // ← Tu clase real
         lecciones.add(leccionFisica);
         cursoFisica.setLecciones(lecciones);
         cursos.add(cursoFisica);
@@ -151,6 +160,7 @@ public class HomeEstudiante extends BaseActivity {
     private void onCursoSeleccionado(Curso curso) {
         Intent intent = new Intent(this, DetalleCurso.class);
         intent.putExtra("CURSO_ID", curso.getId());
+        intent.putExtra("CURSO_TITULO", curso.getTitulo());
         startActivity(intent);
         try {
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

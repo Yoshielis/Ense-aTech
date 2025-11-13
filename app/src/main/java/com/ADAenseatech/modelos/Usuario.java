@@ -25,33 +25,6 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    // Algoritmo de búsqueda lineal
-    public static Usuario buscarUsuarioPorId(List<Usuario> usuarios, String usuarioId) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getId().equals(usuarioId)) {
-                return usuario;
-            }
-        }
-        return null;
-    }
-
-    // Algoritmo de ordenación por puntos (bubble sort)
-    public static List<Usuario> ordenarUsuariosPorPuntos(List<Usuario> usuarios) {
-        List<Usuario> usuariosOrdenados = new ArrayList<>(usuarios);
-        int n = usuariosOrdenados.size();
-
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (usuariosOrdenados.get(j).getPuntos() < usuariosOrdenados.get(j + 1).getPuntos()) {
-                    Usuario temp = usuariosOrdenados.get(j);
-                    usuariosOrdenados.set(j, usuariosOrdenados.get(j + 1));
-                    usuariosOrdenados.set(j + 1, temp);
-                }
-            }
-        }
-        return usuariosOrdenados;
-    }
-
     // Getters y Setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -66,11 +39,15 @@ public class Usuario {
     public void setTipoUsuario(String tipoUsuario) { this.tipoUsuario = tipoUsuario; }
 
     public List<String> getCursosInscritos() { return cursosInscritos; }
-    public void setCursosInscritos(List<String> cursosInscritos) { this.cursosInscritos = cursosInscritos; }
+    public void setCursosInscritos(List<String> cursosInscritos) {
+        this.cursosInscritos = cursosInscritos != null ? cursosInscritos : new ArrayList<>();
+    }
 
     public int getPuntos() { return puntos; }
     public void setPuntos(int puntos) { this.puntos = puntos; }
 
     public List<String> getLogros() { return logros; }
-    public void setLogros(List<String> logros) { this.logros = logros; }
+    public void setLogros(List<String> logros) {
+        this.logros = logros != null ? logros : new ArrayList<>();
+    }
 }

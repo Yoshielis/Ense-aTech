@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.widget.ImageButton;
 import android.content.SharedPreferences;
 import androidx.appcompat.app.AlertDialog;
+import com.ADAenseatech.R;
 
 public class NavegacionUtil {
 

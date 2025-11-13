@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ADAenseatech.R;
-import com.ADAenseatech.modelos.Nota;
+import com.ADAenseatech.Nota;
 import java.util.List;
 
 public class AdaptNotas extends RecyclerView.Adapter<AdaptNotas.NotaViewHolder> {

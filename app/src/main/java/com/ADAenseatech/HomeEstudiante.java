@@ -1,14 +1,14 @@
 package com.ADAenseatech;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ADAenseatech.adaptcurso.Adaptcurso;
@@ -21,6 +21,9 @@ import java.util.List;
 
 public class HomeEstudiante extends AppCompatActivity {
 
+    private Toolbar toolbar;
+    private TextView toolbarTitle;
+    private ImageButton btnBack;
     private TextView tvBienvenida;
     private RecyclerView rvCursos;
     private Button btnApuntes, btnFormularios;
@@ -33,70 +36,140 @@ public class HomeEstudiante extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_estudiante);
 
-        // Inicializar SIN usar las variables de clase
+        // Configurar Toolbar personalizado
+        configurarToolbar();
+
+        // Inicializar vistas
+        inicializarVistas();
+
+        // Configurar funcionalidad
+        cargarDatosUsuario();
+        configurarListaCursos();
+        configurarBotones();
+    }
+
+    private void configurarToolbar() {
         try {
-            // Usa variables locales temporalmente
-            TextView tvBienvenida = findViewById(R.id.tvBienvenida);
-            RecyclerView rvCursos = findViewById(R.id.rvCursos);
-            Button btnApuntes = findViewById(R.id.btnApuntes);
-            Button btnFormularios = findViewById(R.id.btnFormularios);
+            toolbar = findViewById(R.id.toolbar);
+            toolbarTitle = findViewById(R.id.toolbar_title);
+            btnBack = findViewById(R.id.btnBack);
 
-            System.out.println("DEBUG: Vistas encontradas:");
-            System.out.println("tvBienvenida: " + (tvBienvenida != null));
-            System.out.println("rvCursos: " + (rvCursos != null));
-            System.out.println("btnApuntes: " + (btnApuntes != null));
-            System.out.println("btnFormularios: " + (btnFormularios != null));
+            // Verificar que las vistas se encontraron
+            if (toolbar == null) {
+                Toast.makeText(this, "Error: No se encontró el Toolbar", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-            // Si se encontraron, configura la app
-            if (tvBienvenida != null && rvCursos != null) {
-                cargarDatosUsuario(tvBienvenida);
-                configurarListaCursos(rvCursos);
-                configurarBotones(btnApuntes, btnFormularios);
+            setSupportActionBar(toolbar);
+
+            // Configurar botón de regreso
+            if (btnBack != null) {
+                btnBack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onBackPressed();
+                    }
+                });
+            }
+
+            // Configurar título
+            if (toolbarTitle != null) {
+                toolbarTitle.setText("Inicio Estudiante");
             }
 
         } catch (Exception e) {
-            System.out.println("ERROR: " + e.getMessage());
-            e.printStackTrace();
+            Toast.makeText(this, "Error configurando toolbar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void cargarDatosUsuario(TextView tvBienvenida) {
-        SharedPreferences prefs = getSharedPreferences("SesionUsuario", MODE_PRIVATE);
-        String nombreUsuario = prefs.getString("usuarioNombre", "Estudiante");
-        tvBienvenida.setText("Bienvenido, " + nombreUsuario);
+    private void inicializarVistas() {
+        try {
+            tvBienvenida = findViewById(R.id.tvBienvenida);
+            rvCursos = findViewById(R.id.rvCursos);
+            btnApuntes = findViewById(R.id.btnApuntes);
+            btnFormularios = findViewById(R.id.btnFormularios);
+
+            // Verificar que todas las vistas se encontraron
+            if (tvBienvenida == null) Toast.makeText(this, "tvBienvenida no encontrado", Toast.LENGTH_SHORT).show();
+            if (rvCursos == null) Toast.makeText(this, "rvCursos no encontrado", Toast.LENGTH_SHORT).show();
+            if (btnApuntes == null) Toast.makeText(this, "btnApuntes no encontrado", Toast.LENGTH_SHORT).show();
+            if (btnFormularios == null) Toast.makeText(this, "btnFormularios no encontrado", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Error inicializando vistas: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private void configurarListaCursos(RecyclerView rvCursos) {
-        listaCursos.clear();
-        listaCursos.addAll(generarCursosEjemplo());
-
-        adaptadorCursos = new Adaptcurso(listaCursos, new Adaptcurso.OnCursoClickListener() {
-            @Override
-            public void onCursoClick(Curso curso) {
-                onCursoSeleccionado(curso);
+    private void cargarDatosUsuario() {
+        try {
+            SharedPreferences prefs = getSharedPreferences("SesionUsuario", MODE_PRIVATE);
+            String nombreUsuario = prefs.getString("usuarioNombre", "Estudiante");
+            if (tvBienvenida != null) {
+                tvBienvenida.setText("Bienvenido, " + nombreUsuario);
             }
-        });
-
-        rvCursos.setLayoutManager(new LinearLayoutManager(this));
-        rvCursos.setAdapter(adaptadorCursos);
+        } catch (Exception e) {
+            Toast.makeText(this, "Error cargando datos usuario", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private void configurarBotones(Button btnApuntes, Button btnFormularios) {
-        btnApuntes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeEstudiante.this, Apuntes.class));
-            }
-        });
+    private void configurarListaCursos() {
+        try {
+            listaCursos.clear();
+            listaCursos.addAll(generarCursosEjemplo());
 
-        btnFormularios.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeEstudiante.this, Formularios.class));
+            adaptadorCursos = new Adaptcurso(listaCursos, new Adaptcurso.OnCursoClickListener() {
+                @Override
+                public void onCursoClick(Curso curso) {
+                    onCursoSeleccionado(curso);
+                }
+            });
+
+            if (rvCursos != null) {
+                rvCursos.setLayoutManager(new LinearLayoutManager(this));
+                rvCursos.setAdapter(adaptadorCursos);
             }
-        });
+        } catch (Exception e) {
+            Toast.makeText(this, "Error configurando lista cursos", Toast.LENGTH_SHORT).show();
+        }
     }
 
+    private void configurarBotones() {
+        try {
+            if (btnApuntes != null) {
+                btnApuntes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(HomeEstudiante.this, Apuntes.class));
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    }
+                });
+            }
+
+            if (btnFormularios != null) {
+                btnFormularios.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(HomeEstudiante.this, Formularios.class));
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    }
+                });
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Error configurando botones", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        try {
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        } catch (Exception e) {
+            // Si no existen las animaciones, simplemente ignora el error
+        }
+    }
+
+    // Tus métodos existentes...
     private List<Curso> generarCursosEjemplo() {
         List<Curso> cursos = new ArrayList<>();
 
@@ -110,12 +183,10 @@ public class HomeEstudiante extends AppCompatActivity {
         leccionFisica.setDescripcion("Conceptos básicos y método científico");
         leccionFisica.setDescripcionExperimento("Experimento: Medición de densidad con objetos caseros");
 
-        // Agregar referencia
         List<Referencia> referencias = new ArrayList<>();
         referencias.add(new Referencia("Libro de Física General", "http://ejemplo.com", "PDF"));
         leccionFisica.setReferencias(referencias);
 
-        // Agregar pregunta
         List<Preguntas> preguntas = new ArrayList<>();
         List<String> opciones = new ArrayList<>();
         opciones.add("Ciencia que estudia la materia");
@@ -140,29 +211,14 @@ public class HomeEstudiante extends AppCompatActivity {
         return cursos;
     }
 
-    private void configurarBotones() {
-        btnApuntes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeEstudiante.this, Apuntes.class));
-            }
-        });
-
-        btnFormularios.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeEstudiante.this, Formularios.class));
-            }
-        });
-    }
-
     private void onCursoSeleccionado(Curso curso) {
         Intent intent = new Intent(this, DetalleCurso.class);
         intent.putExtra("CURSO_ID", curso.getId());
         startActivity(intent);
-    }
-
-    private void mostrarMensaje(String mensaje) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+        try {
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        } catch (Exception e) {
+            // Ignorar error de animaciones
+        }
     }
 }

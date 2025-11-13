@@ -5,12 +5,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeAdmin extends AppCompatActivity {
-
+    private Toolbar toolbar;
+    private TextView toolbarTitle;
+    private ImageButton btnBack;
     private TextView tvBienvenida;
     private Button btnGestionUsuarios, btnGraficasProgreso, btnOrganizarProfesores;
     private Button btnNoticiasCampus, btnForos, btnReportes;
@@ -23,8 +27,41 @@ public class HomeAdmin extends AppCompatActivity {
         inicializarVistas();
         cargarDatosUsuario();
         configurarBotones();
+        configurarToolbar();
     }
+    private void configurarToolbar() {
+        try {
+            toolbar = findViewById(R.id.toolbar);
+            toolbarTitle = findViewById(R.id.toolbar_title);
+            btnBack = findViewById(R.id.btnBack);
 
+            // Verificar que las vistas se encontraron
+            if (toolbar == null) {
+                Toast.makeText(this, "Error: No se encontró el Toolbar", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            setSupportActionBar(toolbar);
+
+            // Configurar botón de regreso
+            if (btnBack != null) {
+                btnBack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onBackPressed();
+                    }
+                });
+            }
+
+            // Configurar título
+            if (toolbarTitle != null) {
+                toolbarTitle.setText("Inicio Administrador");
+            }
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Error configurando toolbar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
     private void inicializarVistas() {
         tvBienvenida = findViewById(R.id.tvBienvenida);
         btnGestionUsuarios = findViewById(R.id.btnGestionUsuarios);
@@ -83,6 +120,17 @@ public class HomeAdmin extends AppCompatActivity {
                 mostrarMensaje("Generar reportes - Próximamente");
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        try {
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        } catch (Exception e) {
+            // Si no existen las animaciones, simplemente ignora el error
+        }
     }
 
     private void mostrarMensaje(String mensaje) {

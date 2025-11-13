@@ -8,7 +8,7 @@ public class Nota {
 
     public Nota() {}
 
-    public Nota(String titulo, String contenido, String curso, String fecha) {
+    public Nota(String titulo, String contenido, String curso, String fecha){
         this.titulo = titulo;
         this.contenido = contenido;
         this.curso = curso;

@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ADAenseatech.adaptcurso.AdaptNotas;
-import com.ADAenseatech.modelos.Nota;
+import com.ADAenseatech.Nota;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

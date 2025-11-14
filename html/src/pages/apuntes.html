@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Apuntes - ADA enTech</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/notes.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>ADA enTech</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="home-estudiante.html">Inicio</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+          <li><a href="lecciones.html">Lecciones</a></li>
+          <li><a href="formularios.html">Formularios</a></li>
+          <li><a href="apuntes.html" class="active">Apuntes</a></li>
+          <li><a href="perfil.html">Mi Perfil</a></li>
+          <li><a href="#" id="logoutBtn">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <h1>Mis Apuntes y Notas</h1>
+      <p>Organiza tus ideas, resume lecciones y lleva un registro de tu aprendizaje</p>
+    </div>
+
+    <div class="notes-actions">
+      <button class="btn btn-primary" onclick="crearNuevaNota()">
+        <i class="fas fa-plus"></i> Nueva Nota
+      </button>
+      <div class="notes-filters">
+        <select id="filtroCursoNota" class="form-control">
+          <option value="">Todos los cursos</option>
+          <option value="FISICA">Física</option>
+          <option value="CALCULO">Cálculo</option>
+          <option value="QUIMICA">Química</option>
+        </select>
+        <input type="text" id="buscarNota" class="form-control" placeholder="Buscar en notas...">
+      </div>
+    </div>
+
+    <div class="notes-layout">
+      <!-- Panel de lista de notas -->
+      <div class="notes-sidebar">
+        <h3>Mis Notas</h3>
+        <div class="notes-list" id="listaNotas">
+          <!-- Las notas se cargarán dinámicamente -->
+        </div>
+      </div>
+
+      <!-- Editor de notas -->
+      <div class="notes-editor">
+        <div class="editor-header">
+          <input type="text" id="notaTitulo" class="form-control" placeholder="Título de la nota..." disabled>
+          <div class="editor-actions">
+            <button class="btn btn-sm btn-outline" id="btnEditar" onclick="habilitarEdicion()" disabled>
+              <i class="fas fa-edit"></i> Editar
+            </button>
+            <button class="btn btn-sm btn-primary" id="btnGuardar" onclick="guardarNota()" style="display: none;">
+              <i class="fas fa-save"></i> Guardar
+            </button>
+            <button class="btn btn-sm btn-outline" id="btnCancelar" onclick="cancelarEdicion()" style="display: none;">
+              <i class="fas fa-times"></i> Cancelar
+            </button>
+            <button class="btn btn-sm btn-danger" id="btnEliminar" onclick="eliminarNota()" disabled>
+              <i class="fas fa-trash"></i> Eliminar
+            </button>
+          </div>
+        </div>
+
+        <div class="editor-meta">
+          <div class="meta-group">
+            <label for="notaCurso">Curso:</label>
+            <select id="notaCurso" class="form-control" disabled>
+              <option value="">Selecciona un curso</option>
+              <option value="FISICA">Física Básica</option>
+              <option value="CALCULO">Cálculo Diferencial</option>
+              <option value="QUIMICA">Química General</option>
+            </select>
+          </div>
+          <div class="meta-group">
+            <label for="notaFecha">Fecha:</label>
+            <input type="text" id="notaFecha" class="form-control" disabled>
+          </div>
+        </div>
+
+        <div class="editor-toolbar">
+          <button class="tool-btn" onclick="formatearTexto('bold')" title="Negrita">
+            <i class="fas fa-bold"></i>
+          </button>
+          <button class="tool-btn" onclick="formatearTexto('italic')" title="Itálica">
+            <i class="fas fa-italic"></i>
+          </button>
+          <button class="tool-btn" onclick="formatearTexto('underline')" title="Subrayado">
+            <i class="fas fa-underline"></i>
+          </button>
+          <button class="tool-btn" onclick="insertarLista('ul')" title="Lista no ordenada">
+            <i class="fas fa-list-ul"></i>
+          </button>
+          <button class="tool-btn" onclick="insertarLista('ol')" title="Lista ordenada">
+            <i class="fas fa-list-ol"></i>
+          </button>
+          <button class="tool-btn" onclick="insertarEnlace()" title="Insertar enlace">
+            <i class="fas fa-link"></i>
+          </button>
+          <button class="tool-btn" onclick="insertarImagen()" title="Insertar imagen">
+            <i class="fas fa-image"></i>
+          </button>
+        </div>
+
+        <div class="editor-content">
+          <textarea id="notaContenido" class="form-control" placeholder="Escribe tu nota aquí..." rows="15" disabled></textarea>
+          <div id="vistaPrevia" class="note-preview" style="display: none;"></div>
+        </div>
+
+        <div class="editor-tags">
+          <label>Etiquetas:</label>
+          <div class="tags-container">
+            <input type="text" id="inputTag" class="form-control" placeholder="Añadir etiqueta..." disabled>
+            <button class="btn btn-sm btn-outline" onclick="agregarEtiqueta()" disabled>
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <div class="tags-list" id="listaEtiquetas"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plantillas de notas -->
+    <div class="notes-templates">
+      <h3>Plantillas de Apuntes</h3>
+      <div class="templates-grid">
+        <div class="template-card" onclick="usarPlantilla('cornell')">
+          <div class="template-icon">
+            <i class="fas fa-columns"></i>
+          </div>
+          <h4>Método Cornell</h4>
+          <p>Ideal para resúmenes y revisión de conceptos</p>
+        </div>
+
+        <div class="template-card" onclick="usarPlantilla('mapa_mental')">
+          <div class="template-icon">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <h4>Mapa Mental</h4>
+          <p>Perfecto para conectar ideas y conceptos</p>
+        </div>
+
+        <div class="template-card" onclick="usarPlantilla('qdr')">
+          <div class="template-icon">
+            <i class="fas fa-book-reader"></i>
+          </div>
+          <h4>Método QDR</h4>
+          <p>Preguntas, Desarrollo, Resumen</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 ADA enTech - Plataforma Educativa. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/notes.js"></script>
+</body>
+</html>

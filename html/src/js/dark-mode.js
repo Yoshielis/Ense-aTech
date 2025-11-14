@@ -1,45 +1,87 @@
-// Manejo del modo oscuro
+// Sistema completo de modo oscuro
 document.addEventListener('DOMContentLoaded', function() {
-    const savedTheme = localStorage.getItem('theme') || 'light-mode';
-    document.body.className = savedTheme;
-
-    // Crear botón de cambio de tema si no existe
-    if (!document.querySelector('.theme-toggle')) {
-        createThemeToggle();
-    }
+    inicializarModoOscuro();
+    crearToggleModoOscuro();
 });
 
-function createThemeToggle() {
-    const headerContent = document.querySelector('.header-content');
-    if (headerContent) {
-        const themeToggle = document.createElement('button');
-        themeToggle.className = 'theme-toggle';
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        themeToggle.title = 'Cambiar tema';
+function inicializarModoOscuro() {
+    const configuracion = JSON.parse(localStorage.getItem('configuracionUsuario') || '{}');
+    const temaPreferido = configuracion.tema || 'auto';
 
-        // Insertar antes del primer botón de navegación
-        const firstNavItem = document.querySelector('nav ul li:first-child');
-        if (firstNavItem) {
-            firstNavItem.parentNode.insertBefore(themeToggle, firstNavItem);
-        } else {
-            headerContent.appendChild(themeToggle);
+    aplicarTema(temaPreferido);
+}
+
+function crearToggleModoOscuro() {
+    // Buscar o crear el botón de toggle
+    let toggle = document.querySelector('.theme-toggle');
+
+    if (!toggle) {
+        toggle = document.createElement('button');
+        toggle.className = 'theme-toggle';
+        toggle.innerHTML = '<i class="fas fa-moon"></i>';
+        toggle.title = 'Cambiar tema';
+
+        // Insertar en el header
+        const header = document.querySelector('.header-content');
+        if (header) {
+            const nav = header.querySelector('nav');
+            if (nav) {
+                header.insertBefore(toggle, nav);
+            } else {
+                header.appendChild(toggle);
+            }
         }
-
-        themeToggle.addEventListener('click', toggleTheme);
     }
+
+    toggle.addEventListener('click', toggleModoOscuro);
+    actualizarIconoToggle();
 }
 
-function toggleTheme() {
-    const body = document.body;
-    const themeToggle = document.querySelector('.theme-toggle');
+function toggleModoOscuro() {
+    const estaOscuro = document.body.classList.contains('dark-mode');
 
-    if (body.classList.contains('light-mode')) {
-        body.classList.replace('light-mode', 'dark-mode');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        localStorage.setItem('theme', 'dark-mode');
+    if (estaOscuro) {
+        document.body.classList.replace('dark-mode', 'light-mode');
+        localStorage.setItem('temaManual', 'light');
     } else {
-        body.classList.replace('dark-mode', 'light-mode');
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        localStorage.setItem('theme', 'light-mode');
+        document.body.classList.replace('light-mode', 'dark-mode');
+        localStorage.setItem('temaManual', 'dark');
+    }
+
+    actualizarIconoToggle();
+
+    // Actualizar configuración si existe
+    const configuracion = JSON.parse(localStorage.getItem('configuracionUsuario') || '{}');
+    if (configuracion.tema) {
+        configuracion.tema = estaOscuro ? 'light' : 'dark';
+        localStorage.setItem('configuracionUsuario', JSON.stringify(configuracion));
     }
 }
+
+function actualizarIconoToggle() {
+    const toggle = document.querySelector('.theme-toggle');
+    if (toggle) {
+        const estaOscuro = document.body.classList.contains('dark-mode');
+        toggle.innerHTML = estaOscuro ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        toggle.title = estaOscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+    }
+}
+
+function aplicarTema(tema) {
+    if (tema === 'auto') {
+        // Detectar preferencia del sistema
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.className = 'dark-mode';
+        } else {
+            document.body.className = 'light-mode';
+        }
+    } else {
+        document.body.className = tema + '-mode';
+    }
+
+    actualizarIconoToggle();
+}
+
+// Exportar funciones para uso global
+window.toggleModoOscuro = toggleModoOscuro;
+window.aplicarTema = aplicarTema;

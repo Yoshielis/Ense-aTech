@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estadísticas - ADA enTech</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/courses.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>ADA enTech</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="home-profesor.html">Inicio</a></li>
+          <li><a href="cursos.html">Mis Cursos</a></li>
+          <li><a href="estadisticas.html" class="active">Estadísticas</a></li>
+          <li><a href="formularios.html">Evaluaciones</a></li>
+          <li><a href="perfil.html">Mi Perfil</a></li>
+          <li><a href="#" id="logoutBtn">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <h1>Estadísticas del Curso</h1>
+      <p>Métricas y análisis del rendimiento estudiantil</p>
+    </div>
+
+    <div class="stats-filters">
+      <div class="filter-group">
+        <label for="cursoSelect">Curso:</label>
+        <select id="cursoSelect" class="form-control">
+          <option value="fisica">Física Básica</option>
+          <option value="calculo">Cálculo Diferencial</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="periodoSelect">Período:</label>
+        <select id="periodoSelect" class="form-control">
+          <option value="semana">Última semana</option>
+          <option value="mes">Último mes</option>
+          <option value="total">Total</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="actualizarEstadisticas()">
+        <i class="fas fa-sync"></i> Actualizar
+      </button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card large">
+        <h3>Rendimiento General</h3>
+        <div class="chart-container">
+          <canvas id="rendimientoChart" width="400" height="200"></canvas>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <h3>Participación</h3>
+        <div class="metric-value">78%</div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 78%"></div>
+        </div>
+        <p>Promedio de participación en actividades</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Tasa de Finalización</h3>
+        <div class="metric-value">65%</div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 65%"></div>
+        </div>
+        <p>Estudiantes que completaron el curso</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Tiempo Promedio</h3>
+        <div class="metric-value">4.2h</div>
+        <p>Tiempo semanal por estudiante</p>
+      </div>
+    </div>
+
+    <div class="students-performance">
+      <h2>Rendimiento por Estudiante</h2>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+          <tr>
+            <th>Estudiante</th>
+            <th>Progreso</th>
+            <th>Calificación</th>
+            <th>Actividades</th>
+            <th>Último Acceso</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Ana García</td>
+            <td>
+              <div class="progress-bar small">
+                <div class="progress-fill" style="width: 92%"></div>
+              </div>
+              <span>92%</span>
+            </td>
+            <td>4.8/5.0</td>
+            <td>24/25</td>
+            <td>Hoy</td>
+            <td>
+              <button class="btn btn-sm btn-outline">Detalles</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Carlos López</td>
+            <td>
+              <div class="progress-bar small">
+                <div class="progress-fill" style="width: 78%"></div>
+              </div>
+              <span>78%</span>
+            </td>
+            <td>4.2/5.0</td>
+            <td>20/25</td>
+            <td>Ayer</td>
+            <td>
+              <button class="btn btn-sm btn-outline">Detalles</button>
+            </td>
+          </tr>
+          <tr>
+            <td>María Rodríguez</td>
+            <td>
+              <div class="progress-bar small">
+                <div class="progress-fill" style="width: 65%"></div>
+              </div>
+              <span>65%</span>
+            </td>
+            <td>3.8/5.0</td>
+            <td>18/25</td>
+            <td>Hace 2 días</td>
+            <td>
+              <button class="btn btn-sm btn-outline">Detalles</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="export-section">
+      <button class="btn btn-primary" onclick="exportarReporte()">
+        <i class="fas fa-download"></i> Exportar Reporte Completo
+      </button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 ADA enTech - Plataforma Educativa. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/estadisticas.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

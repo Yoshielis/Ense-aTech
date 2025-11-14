@@ -49,9 +49,7 @@ function checkAuthentication() {
             break;
     }
 
-    if (currentPage !== expectedPage) {
-        window.location.href = expectedPage;
-    }
+
 }
 
 function logout() {

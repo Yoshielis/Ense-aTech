@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del Curso - ADA enTech</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/courses.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>ADA enTech</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="home-estudiante.html">Inicio</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+          <li><a href="lecciones.html">Lecciones</a></li>
+          <li><a href="formularios.html">Formularios</a></li>
+          <li><a href="apuntes.html">Apuntes</a></li>
+          <li><a href="perfil.html">Mi Perfil</a></li>
+          <li><a href="#" id="logoutBtn">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <h1 id="cursoTitulo">Física Básica</h1>
+      <p id="cursoDescripcion">Aprende los fundamentos de la física con experimentos caseros</p>
+      <div class="curso-progress">
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 65%"></div>
+        </div>
+        <span>65% completado</span>
+      </div>
+    </div>
+
+    <div class="curso-content">
+      <div class="curso-info-grid">
+        <div class="info-card">
+          <h3>Información del Curso</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <strong>Instructor:</strong>
+              <span>Prof. María González</span>
+            </div>
+            <div class="info-item">
+              <strong>Duración:</strong>
+              <span>8 semanas</span>
+            </div>
+            <div class="info-item">
+              <strong>Nivel:</strong>
+              <span>Básico</span>
+            </div>
+            <div class="info-item">
+              <strong>Estudiantes:</strong>
+              <span>245 inscritos</span>
+            </div>
+            <div class="info-item">
+              <strong>Idioma:</strong>
+              <span>Español</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions-card">
+          <h3>Acciones</h3>
+          <div class="action-buttons">
+            <button class="btn btn-primary" onclick="continuarCurso()">
+              <i class="fas fa-play"></i> Continuar Curso
+            </button>
+            <button class="btn btn-outline" onclick="descargarMaterial()">
+              <i class="fas fa-download"></i> Descargar Material
+            </button>
+            <button class="btn btn-outline" onclick="verForo()">
+              <i class="fas fa-comments"></i> Foro del Curso
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modulos-section">
+        <h2>Módulos del Curso</h2>
+
+        <div class="modulo-card">
+          <div class="modulo-header">
+            <h3>Módulo 1: Introducción a la Física</h3>
+            <span class="modulo-status completed">Completado</span>
+          </div>
+          <div class="modulo-content">
+            <div class="leccion-item completed">
+              <i class="fas fa-check-circle"></i>
+              <span>1.1 - ¿Qué es la física?</span>
+              <span class="leccion-duration">15 min</span>
+            </div>
+            <div class="leccion-item completed">
+              <i class="fas fa-check-circle"></i>
+              <span>1.2 - Método científico</span>
+              <span class="leccion-duration">20 min</span>
+            </div>
+            <div class="leccion-item completed">
+              <i class="fas fa-check-circle"></i>
+              <span>1.3 - Magnitudes y unidades</span>
+              <span class="leccion-duration">25 min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modulo-card">
+          <div class="modulo-header">
+            <h3>Módulo 2: Cinemática</h3>
+            <span class="modulo-status in-progress">En Progreso</span>
+          </div>
+          <div class="modulo-content">
+            <div class="leccion-item completed">
+              <i class="fas fa-check-circle"></i>
+              <span>2.1 - Movimiento rectilíneo</span>
+              <span class="leccion-duration">30 min</span>
+            </div>
+            <div class="leccion-item current">
+              <i class="fas fa-play-circle"></i>
+              <span>2.2 - Velocidad y aceleración</span>
+              <span class="leccion-duration">35 min</span>
+            </div>
+            <div class="leccion-item">
+              <i class="fas fa-lock"></i>
+              <span>2.3 - Caída libre</span>
+              <span class="leccion-duration">40 min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modulo-card">
+          <div class="modulo-header">
+            <h3>Módulo 3: Dinámica</h3>
+            <span class="modulo-status locked">Bloqueado</span>
+          </div>
+          <div class="modulo-content">
+            <div class="leccion-item">
+              <i class="fas fa-lock"></i>
+              <span>3.1 - Leyes de Newton</span>
+              <span class="leccion-duration">45 min</span>
+            </div>
+            <div class="leccion-item">
+              <i class="fas fa-lock"></i>
+              <span>3.2 - Fuerza y masa</span>
+              <span class="leccion-duration">40 min</span>
+            </div>
+            <div class="leccion-item">
+              <i class="fas fa-lock"></i>
+              <span>3.3 - Aplicaciones prácticas</span>
+              <span class="leccion-duration">50 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recursos-section">
+        <h2>Recursos Adicionales</h2>
+        <div class="recursos-grid">
+          <div class="recurso-card">
+            <i class="fas fa-book"></i>
+            <h4>Libro de Texto</h4>
+            <p>Física Universitaria - Volumen 1</p>
+            <button class="btn btn-sm btn-outline">Descargar PDF</button>
+          </div>
+          <div class="recurso-card">
+            <i class="fas fa-video"></i>
+            <h4>Video Tutoriales</h4>
+            <p>Colección de videos explicativos</p>
+            <button class="btn btn-sm btn-outline">Ver Lista</button>
+          </div>
+          <div class="recurso-card">
+            <i class="fas fa-clipboard-list"></i>
+            <h4>Ejercicios</h4>
+            <p>Problemas resueltos y propuestos</p>
+            <button class="btn btn-sm btn-outline">Practicar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 ADA enTech - Plataforma Educativa. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/detalle-curso.js"></script>
+</body>
+</html>

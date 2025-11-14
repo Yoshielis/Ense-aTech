@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Perfil - ADA enTech</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>ADA enTech</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="home-estudiante.html">Inicio</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+          <li><a href="lecciones.html">Lecciones</a></li>
+          <li><a href="formularios.html">Formularios</a></li>
+          <li><a href="apuntes.html">Apuntes</a></li>
+          <li><a href="perfil.html" class="active">Mi Perfil</a></li>
+          <li><a href="#" id="logoutBtn">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <h1>Mi Perfil</h1>
+      <p>Gestiona tu información personal y preferencias de la plataforma</p>
+    </div>
+
+    <div class="profile-tabs">
+      <button class="tab-btn active" onclick="abrirTabPerfil('informacion')">Información Personal</button>
+      <button class="tab-btn" onclick="abrirTabPerfil('progreso')">Progreso Académico</button>
+      <button class="tab-btn" onclick="abrirTabPerfil('configuracion')">Configuración</button>
+      <button class="tab-btn" onclick="abrirTabPerfil('seguridad')">Seguridad</button>
+    </div>
+
+    <!-- Información Personal -->
+    <div id="informacion" class="tab-content active">
+      <div class="profile-section">
+        <div class="profile-header">
+          <h2>Información Personal</h2>
+          <button class="btn btn-outline" onclick="habilitarEdicionPerfil()">
+            <i class="fas fa-edit"></i> Editar Perfil
+          </button>
+        </div>
+
+        <div class="profile-content">
+          <div class="avatar-section">
+            <div class="avatar">
+              <img src="" alt="Avatar" id="avatarImage" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iNjAiIGZpbGw9IiM0MzYxRUUiLz4KPHBhdGggZD0iTTYwIDY1QzY4LjI4NDMgNjUgNzUgNTguMjg0MyA3NSA1MEM3NSA0MS43MTU3IDY4LjI4NDMgMzUgNjAgMzVDNTEuNzE1NyAzNSA0NSA0MS43MTU3IDQ1IDUwQzQ1IDU4LjI4NDMgNTEuNzE1NyA2NSA2MCA2NVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik00NSA4NUM0NSA3Mi44NDU3IDUxLjU2ODkgNjIuNSA2MCA2Mi41QzY4LjQzMTEgNjIuNSA3NSA3Mi44NDU3IDc1IDg1Vjk1SDQ1Vjg1WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+'">
+              <div class="avatar-overlay">
+                <button class="btn btn-sm btn-primary" onclick="cambiarAvatar()">
+                  <i class="fas fa-camera"></i>
+                </button>
+              </div>
+            </div>
+            <div class="avatar-info">
+              <h3 id="profileName">Cargando...</h3>
+              <p id="profileType">Estudiante</p>
+              <p id="profileEmail">usuario@ejemplo.com</p>
+              <p class="member-since">Miembro desde: <span id="memberSince">Nov 2023</span></p>
+            </div>
+          </div>
+
+          <form id="profileForm" class="profile-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="profileFirstName">Nombres</label>
+                <input type="text" id="profileFirstName" class="form-control" disabled>
+              </div>
+              <div class="form-group">
+                <label for="profileLastName">Apellidos</label>
+                <input type="text" id="profileLastName" class="form-control" disabled>
+              </div>
+              <div class="form-group">
+                <label for="profileEmailInput">Correo Electrónico</label>
+                <input type="email" id="profileEmailInput" class="form-control" disabled>
+              </div>
+              <div class="form-group">
+                <label for="profilePhone">Teléfono</label>
+                <input type="tel" id="profilePhone" class="form-control" disabled>
+              </div>
+              <div class="form-group">
+                <label for="profileBirthdate">Fecha de Nacimiento</label>
+                <input type="date" id="profileBirthdate" class="form-control" disabled>
+              </div>
+              <div class="form-group">
+                <label for="profileCountry">País</label>
+                <select id="profileCountry" class="form-control" disabled>
+                  <option value="">Selecciona un país</option>
+                  <option value="MX">México</option>
+                  <option value="CO">Colombia</option>
+                  <option value="AR">Argentina</option>
+                  <option value="ES">España</option>
+                  <option value="US">Estados Unidos</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-actions" id="profileActions" style="display: none;">
+              <button type="button" class="btn btn-outline" onclick="cancelarEdicionPerfil()">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <h2>Intereses Académicos</h2>
+        <div class="interests-grid">
+          <div class="interest-card">
+            <i class="fas fa-atom"></i>
+            <span>Física</span>
+          </div>
+          <div class="interest-card">
+            <i class="fas fa-calculator"></i>
+            <span>Matemáticas</span>
+          </div>
+          <div class="interest-card">
+            <i class="fas fa-flask"></i>
+            <span>Química</span>
+          </div>
+          <div class="interest-card">
+            <i class="fas fa-laptop-code"></i>
+            <span>Programación</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progreso Académico -->
+    <div id="progreso" class="tab-content">
+      <div class="profile-section">
+        <h2>Mi Progreso Académico</h2>
+
+        <div class="progress-stats">
+          <div class="progress-card">
+            <div class="progress-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="progress-info">
+              <h3>8</h3>
+              <p>Cursos Inscritos</p>
+            </div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="progress-info">
+              <h3>24</h3>
+              <p>Lecciones Completadas</p>
+            </div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="progress-info">
+              <h3>350</h3>
+              <p>Puntos Obtenidos</p>
+            </div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="progress-info">
+              <h3>78%</h3>
+              <p>Progreso General</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-charts">
+          <div class="chart-container">
+            <h3>Progreso por Curso</h3>
+            <canvas id="courseProgressChart" width="400" height="200"></canvas>
+          </div>
+          <div class="chart-container">
+            <h3>Actividad Semanal</h3>
+            <canvas id="weeklyActivityChart" width="400" height="200"></canvas>
+          </div>
+        </div>
+
+        <div class="achievements-section">
+          <h3>Logros y Reconocimientos</h3>
+          <div class="achievements-grid">
+            <div class="achievement-card">
+              <div class="achievement-icon completed">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="achievement-info">
+                <h4>Primer Curso Completado</h4>
+                <p>Completaste tu primer curso en ADA enTech</p>
+                <span class="achievement-date">15 Oct 2023</span>
+              </div>
+            </div>
+            <div class="achievement-card">
+              <div class="achievement-icon completed">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="achievement-info">
+                <h4>Estudiante Destacado</h4>
+                <p>Alcanzaste el top 10% en rendimiento académico</p>
+                <span class="achievement-date">01 Nov 2023</span>
+              </div>
+            </div>
+            <div class="achievement-card">
+              <div class="achievement-icon pending">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <div class="achievement-info">
+                <h4>Explorador Académico</h4>
+                <p>Completa 5 cursos diferentes</p>
+                <span class="achievement-progress">3/5 cursos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Configuración -->
+    <div id="configuracion" class="tab-content">
+      <div class="profile-section">
+        <h2>Preferencias de la Plataforma</h2>
+
+        <div class="settings-grid">
+          <div class="setting-group">
+            <h3>Apariencia</h3>
+            <div class="setting-option">
+              <label for="themePreference">Tema de la plataforma</label>
+              <select id="themePreference" class="form-control" onchange="cambiarTema(this.value)">
+                <option value="auto">Automático (según sistema)</option>
+                <option value="light">Claro</option>
+                <option value="dark">Oscuro</option>
+              </select>
+            </div>
+            <div class="setting-option">
+              <label for="fontSize">Tamaño de fuente</label>
+              <select id="fontSize" class="form-control" onchange="cambiarTamañoFuente(this.value)">
+                <option value="small">Pequeño</option>
+                <option value="medium" selected>Mediano</option>
+                <option value="large">Grande</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <h3>Notificaciones</h3>
+            <div class="setting-option">
+              <label class="checkbox-label">
+                <input type="checkbox" id="notifEmail" checked>
+                <span class="checkmark"></span>
+                Notificaciones por correo electrónico
+              </label>
+            </div>
+            <div class="setting-option">
+              <label class="checkbox-label">
+                <input type="checkbox" id="notifAnnouncements" checked>
+                <span class="checkmark"></span>
+                Anuncios del curso
+              </label>
+            </div>
+            <div class="setting-option">
+              <label class="checkbox-label">
+                <input type="checkbox" id="notifDeadlines">
+                <span class="checkmark"></span>
+                Recordatorios de fechas límite
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <h3>Privacidad</h3>
+            <div class="setting-option">
+              <label for="profileVisibility">Visibilidad del perfil</label>
+              <select id="profileVisibility" class="form-control">
+                <option value="public">Público</option>
+                <option value="students">Solo estudiantes</option>
+                <option value="private">Privado</option>
+              </select>
+            </div>
+            <div class="setting-option">
+              <label class="checkbox-label">
+                <input type="checkbox" id="showProgress" checked>
+                <span class="checkmark"></span>
+                Mostrar mi progreso a otros
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-actions">
+          <button class="btn btn-primary" onclick="guardarConfiguracion()">
+            <i class="fas fa-save"></i> Guardar Preferencias
+          </button>
+          <button class="btn btn-outline" onclick="restablecerConfiguracion()">
+            <i class="fas fa-undo"></i> Restablecer Valores
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seguridad -->
+    <div id="seguridad" class="tab-content">
+      <div class="profile-section">
+        <h2>Seguridad de la Cuenta</h2>
+
+        <div class="security-options">
+          <div class="security-card">
+            <div class="security-info">
+              <h3>Cambiar Contraseña</h3>
+              <p>Actualiza tu contraseña regularmente para mantener tu cuenta segura</p>
+            </div>
+            <button class="btn btn-primary" onclick="abrirModalCambioContrasena()">
+              Cambiar Contraseña
+            </button>
+          </div>
+
+          <div class="security-card">
+            <div class="security-info">
+              <h3>Verificación en Dos Pasos</h3>
+              <p>Añade una capa extra de seguridad a tu cuenta</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="twoFactorAuth">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="security-card">
+            <div class="security-info">
+              <h3>Sesiones Activas</h3>
+              <p>Gestiona los dispositivos donde has iniciado sesión</p>
+            </div>
+            <button class="btn btn-outline" onclick="verSesionesActivas()">
+              Ver Sesiones
+            </button>
+          </div>
+        </div>
+
+        <div class="security-section">
+          <h3>Actividad Reciente de la Cuenta</h3>
+          <div class="activity-log">
+            <div class="activity-item">
+              <div class="activity-icon success">
+                <i class="fas fa-sign-in-alt"></i>
+              </div>
+              <div class="activity-content">
+                <p><strong>Inicio de sesión exitoso</strong></p>
+                <p>Desde: Chrome en Windows • IP: 192.168.1.100</p>
+                <span class="activity-time">Hace 2 horas</span>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon primary">
+                <i class="fas fa-user-edit"></i>
+              </div>
+              <div class="activity-content">
+                <p><strong>Perfil actualizado</strong></p>
+                <p>Se modificó la información personal</p>
+                <span class="activity-time">Hace 3 días</span>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon warning">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <div class="activity-content">
+                <p><strong>Intento de inicio de sesión fallido</strong></p>
+                <p>Desde: Firefox en Linux • IP: 203.0.113.45</p>
+                <span class="activity-time">Hace 1 semana</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="danger-zone">
+          <h3>Zona de Peligro</h3>
+          <div class="danger-actions">
+            <button class="btn btn-danger" onclick="exportarDatos()">
+              <i class="fas fa-download"></i> Exportar Mis Datos
+            </button>
+            <button class="btn btn-danger" onclick="eliminarCuenta()">
+              <i class="fas fa-trash"></i> Eliminar Cuenta
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 ADA enTech - Plataforma Educativa. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/profile.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

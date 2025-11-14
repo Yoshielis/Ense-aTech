@@ -159,3 +159,4 @@ function inicializarGraficas() {
 document.addEventListener('DOMContentLoaded', function() {
     inicializarGraficas();
 });
+

@@ -169,30 +169,81 @@ function filtrarUsuarios() {
 }
 
 function abrirModalNuevoUsuario() {
+    // Cerrar modal existente si hay uno
+    cerrarModalUsuario();
+
     const modal = document.createElement('div');
     modal.className = 'modal';
     modal.id = 'nuevoUsuarioModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+    `;
+
     modal.innerHTML = `
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Crear Nuevo Usuario</h3>
-                <button class="close-modal">&times;</button>
+        <div class="modal-content" style="
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        ">
+            <div class="modal-header" style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.5rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid var(--border-color);
+            ">
+                <h3 style="color: var(--primary); margin: 0;">Crear Nuevo Usuario</h3>
+                <button class="close-modal" style="
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: var(--text-color);
+                    padding: 0;
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                ">&times;</button>
             </div>
-            <form id="nuevoUsuarioForm">
-                <div class="user-form-grid">
+            
+            <form id="nuevoUsuarioForm" style="margin: 0;">
+                <div class="user-form-grid" style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+                    margin-bottom: 1.5rem;
+                ">
                     <div class="form-group">
-                        <label for="nuevoNombre">Nombre Completo</label>
-                        <input type="text" id="nuevoNombre" class="form-control" required>
+                        <label for="nuevoNombre" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Nombre Completo</label>
+                        <input type="text" id="nuevoNombre" class="form-control" required style="width: 100%;">
                     </div>
                     
                     <div class="form-group">
-                        <label for="nuevoEmail">Email</label>
-                        <input type="email" id="nuevoEmail" class="form-control" required>
+                        <label for="nuevoEmail" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+                        <input type="email" id="nuevoEmail" class="form-control" required style="width: 100%;">
                     </div>
                     
                     <div class="form-group">
-                        <label for="nuevoTipo">Tipo de Usuario</label>
-                        <select id="nuevoTipo" class="form-control" required>
+                        <label for="nuevoTipo" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Tipo de Usuario</label>
+                        <select id="nuevoTipo" class="form-control" required style="width: 100%;">
                             <option value="">Seleccione tipo</option>
                             <option value="ESTUDIANTE">Estudiante</option>
                             <option value="PROFESOR">Profesor</option>
@@ -202,39 +253,54 @@ function abrirModalNuevoUsuario() {
                     </div>
                     
                     <div class="form-group">
-                        <label for="nuevoEstado">Estado</label>
-                        <select id="nuevoEstado" class="form-control" required>
+                        <label for="nuevoEstado" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Estado</label>
+                        <select id="nuevoEstado" class="form-control" required style="width: 100%;">
                             <option value="ACTIVO">Activo</option>
                             <option value="INACTIVO">Inactivo</option>
                         </select>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="nuevaContrasena">Contraseña Temporal</label>
-                        <input type="password" id="nuevaContrasena" class="form-control" required>
-                        <small>El usuario deberá cambiar esta contraseña en su primer acceso</small>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="nuevaContrasena" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Contraseña Temporal</label>
+                        <input type="password" id="nuevaContrasena" class="form-control" required style="width: 100%;">
+                        <small style="font-size: 0.875rem; opacity: 0.7;">El usuario deberá cambiar esta contraseña en su primer acceso</small>
                     </div>
                 </div>
                 
-                <div class="form-actions">
-                    <button type="button" class="btn btn-outline" onclick="cerrarModalUsuario()">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Crear Usuario</button>
+                <div class="form-actions" style="
+                    display: flex;
+                    gap: 1rem;
+                    justify-content: flex-end;
+                    margin-top: 1.5rem;
+                    padding-top: 1.5rem;
+                    border-top: 1px solid var(--border-color);
+                ">
+                    <button type="button" class="btn btn-outline" onclick="cerrarModalUsuario()" style="padding: 0.5rem 1.5rem;">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Crear Usuario</button>
                 </div>
             </form>
         </div>
     `;
 
     document.body.appendChild(modal);
-    modal.style.display = 'flex';
 
-    document.querySelector('.close-modal').addEventListener('click', cerrarModalUsuario);
+    // Configurar eventos
+    document.querySelector('#nuevoUsuarioModal .close-modal').addEventListener('click', cerrarModalUsuario);
     document.getElementById('nuevoUsuarioForm').addEventListener('submit', function(e) {
         e.preventDefault();
         guardarNuevoUsuario();
     });
 
+    // Cerrar modal al hacer clic fuera
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
+            cerrarModalUsuario();
+        }
+    });
+
+    // Cerrar con ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
             cerrarModalUsuario();
         }
     });
@@ -243,8 +309,18 @@ function abrirModalNuevoUsuario() {
 function cerrarModalUsuario() {
     const modal = document.getElementById('nuevoUsuarioModal');
     if (modal) {
+        // Remover event listener de ESC
+        document.removeEventListener('keydown', cerrarModalUsuario);
         modal.remove();
     }
+
+    // También limpiar cualquier otro modal que pueda estar abierto
+    const modales = document.querySelectorAll('.modal');
+    modales.forEach(modal => {
+        if (modal.id !== 'nuevoUsuarioModal') { // Por si acaso hay otros modales
+            modal.remove();
+        }
+    });
 }
 
 function guardarNuevoUsuario() {

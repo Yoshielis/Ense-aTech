@@ -82,26 +82,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17df158c-1ea8-4d7d-ab35-2c072bdca79a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/html/src/CSS/notes.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/src/CSS/profile.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/src/js/detalle-curso.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/src/js/estadisticas.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/src/js/notes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/src/js/profile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/src/pages/apuntes.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/src/pages/detalle-curso.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/src/pages/estadisticas.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/src/pages/perfil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/src/CSS/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/html/src/CSS/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/src/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/src/js/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/src/js/dark-mode.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/src/js/dark-mode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/src/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/src/js/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/src/js/profesor.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/src/js/profesor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/src/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/src/pages/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/src/pages/cursos.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/src/pages/cursos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/src/pages/home-estudiante.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/src/pages/home-estudiante.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/src/pages/home-profesor.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/src/pages/home-profesor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,7 +285,8 @@
       <updated>1760359405531</updated>
       <workItem from="1762640732417" duration="325000" />
       <workItem from="1762799015596" duration="4816000" />
-      <workItem from="1763068019068" duration="8068000" />
+      <workItem from="1763068019068" duration="8288000" />
+      <workItem from="1764522696265" duration="30000" />
     </task>
     <servers />
   </component>
